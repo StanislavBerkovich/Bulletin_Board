@@ -7,6 +7,7 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     #TODO: отловить ошибки регистрации
     User.create sign_up_params
+    redirect_to new_user_session_path
   end
 
   def update
