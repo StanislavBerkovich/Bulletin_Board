@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :adverts
+
   devise_for :users
   get 'persons/profile'
 
