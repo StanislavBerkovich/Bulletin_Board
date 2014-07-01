@@ -43,3 +43,5 @@ gem "twitter-bootstrap-rails"
 gem 'enumerize'
 
 gem 'simple_form'
+
+gem "nested_form"
