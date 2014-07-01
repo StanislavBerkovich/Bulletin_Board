@@ -45,3 +45,9 @@ gem 'enumerize'
 gem 'simple_form'
 
 gem "nested_form"
+
+gem 'kaminari'
+
+gem "ransack"
+
+gem 'devise'
