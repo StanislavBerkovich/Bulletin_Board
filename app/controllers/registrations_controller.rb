@@ -5,8 +5,8 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    #TODO: отловить ошибки регистрации
-    User.create sign_up_params
+    user = User.create(sign_up_params)
+    user.role = Role.user_role
     redirect_to new_user_session_path
   end
 
@@ -15,6 +15,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   private
+
 
   def sign_up_params
     downcase_params params.require(:user).permit(:name, :surname, :email, :password, :password_confirmation)
