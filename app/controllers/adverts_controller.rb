@@ -1,4 +1,5 @@
 class AdvertsController < ApplicationController
+  before_filter :authenticate_user!, except: [:show, :index]
   before_action :set_advert, only: [:show, :edit, :update, :destroy]
 
   # GET /adverts
@@ -25,7 +26,7 @@ class AdvertsController < ApplicationController
   # POST /adverts.json
   def create
     @advert = Advert.new(advert_params)
-
+    @advert.user = current_user
     respond_to do |format|
       if @advert.save
         format.html { redirect_to @advert, notice: 'Advert was successfully created.' }
