@@ -5,7 +5,7 @@ class AdvertsController < ApplicationController
   # GET /adverts
   # GET /adverts.json
   def index
-    @adverts = Advert.all
+    @adverts = Advert.order(:id).page(params[:page]).per(2)
   end
 
   # GET /adverts/1

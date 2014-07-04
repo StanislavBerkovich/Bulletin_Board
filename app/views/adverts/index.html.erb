@@ -9,6 +9,7 @@
   </thead>
 
   <tbody>
+  <%= paginate @adverts %>
     <% @adverts.each do |advert| %>
       <tr>
         <td><%= advert.body %></td>
