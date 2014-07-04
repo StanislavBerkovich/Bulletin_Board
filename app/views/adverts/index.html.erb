@@ -9,15 +9,8 @@
   </thead>
 
   <tbody>
+  <%= render @adverts %>
   <%= paginate @adverts %>
-    <% @adverts.each do |advert| %>
-      <tr>
-        <td><%= advert.body %></td>
-        <td><%= link_to 'Show', advert %></td>
-        <td><%= link_to 'Edit', edit_advert_path(advert) %></td>
-        <td><%= link_to 'Destroy', advert, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
   </tbody>
 </table>
 
