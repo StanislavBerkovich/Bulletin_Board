@@ -16,6 +16,7 @@ class AdvertsController < ApplicationController
   # GET /adverts/new
   def new
     @advert = Advert.new
+    @advert.state = :draft
   end
 
   # GET /adverts/1/edit
@@ -27,8 +28,10 @@ class AdvertsController < ApplicationController
   def create
     @advert = Advert.new(advert_params)
     @advert.user = current_user
+    @advert.state = :new
     respond_to do |format|
       if @advert.save
+        @advert.state = :new
         format.html { redirect_to @advert, notice: 'Advert was successfully created.' }
         format.json { render :show, status: :created, location: @advert }
       else
