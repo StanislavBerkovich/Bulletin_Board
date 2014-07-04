@@ -17,18 +17,19 @@ class AdvertsController < ApplicationController
   def new
     @advert = Advert.new
     @advert.state = :draft
-    @types = Type.pluck :name
+    @types = Type.pluck(:name).sort
   end
 
   # GET /adverts/1/edit
   def edit
+    @types = [@advert.type.name]
+    @types << Type.pluck(:name)
+    @types.flatten!.sort!.uniq!
   end
 
   # POST /adverts
   # POST /adverts.json
   def create
-    5.times {puts "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"}
-    puts params
     @advert = Advert.new(advert_params)
     @advert.user = current_user
     @advert.state = :new

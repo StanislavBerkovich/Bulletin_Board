@@ -1,4 +1,6 @@
 <div class="well">
   <p><%= advert.body %></p>
-  <small class='pull-right'><%= advert.user.email %></small>
+  <p><%= advert.type %></p>
+  <p><%= advert.state %></p>
+  <small class='pull-right'><%= full_name advert.user %></small>
 </div>
