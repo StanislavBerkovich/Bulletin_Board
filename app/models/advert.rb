@@ -2,6 +2,7 @@ class Advert < ActiveRecord::Base
   validate :body, presence: true
   extend Enumerize
   belongs_to :user
+  belongs_to :type
 
   enumerize :state, in: [:draft, :new, :rejected, :approved ,:published, :archives]
 
