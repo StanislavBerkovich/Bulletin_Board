@@ -17,6 +17,7 @@ class AdvertsController < ApplicationController
   def new
     @advert = Advert.new
     @advert.state = :draft
+    @types = Type.pluck :name
   end
 
   # GET /adverts/1/edit
@@ -26,6 +27,8 @@ class AdvertsController < ApplicationController
   # POST /adverts
   # POST /adverts.json
   def create
+    5.times {puts "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%"}
+    puts params
     @advert = Advert.new(advert_params)
     @advert.user = current_user
     @advert.state = :new
@@ -73,6 +76,8 @@ class AdvertsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def advert_params
-      params.require(:advert).permit(:body)
+      p = params.require(:advert).permit(:body)
+      p[:type] = Type.find_by(name: params[:advert][:type])
+      p
     end
 end
