@@ -31,7 +31,7 @@ class AdvertsController < ApplicationController
     @advert.state = :new
     respond_to do |format|
       if @advert.save
-        @advert.state = :new
+
         format.html { redirect_to @advert, notice: 'Advert was successfully created.' }
         format.json { render :show, status: :created, location: @advert }
       else

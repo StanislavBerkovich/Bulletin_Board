@@ -17,4 +17,8 @@
 #   runner "AnotherModel.prune_old_records"
 # end
 
+every :day, :at => '10:27pm' do
+  runner 'Advert.send_in_archive'
+end
+
 # Learn more: http://github.com/javan/whenever
