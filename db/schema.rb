@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20140704193453) do
 
   create_table "adverts", force: true do |t|
     t.integer  "user_id"
-    t.string   "body",       null: false
+    t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "state"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20140704193453) do
   end
 
   create_table "roles", force: true do |t|
-    t.string   "name",       null: false
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(version: 20140704193453) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "name",                                null: false
-    t.string   "surname",                             null: false
+    t.string   "name"
+    t.string   "surname"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "role_id"
