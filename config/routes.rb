@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'admin_job/nonpublished'
+  post 'admin_job/publish'
 
   resources :adverts
   get 'adverts/nonpublished'

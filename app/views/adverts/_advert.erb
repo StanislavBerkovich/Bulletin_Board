@@ -17,5 +17,8 @@
       <small class='pull-right'><%= full_name advert.user %></small>
   <% end %>
 
+  <% if can? :publish, advert && advert.state == :new %>
+      <%= button_to 'Public this advert'.html_safe, admin_job_publish_path(advert: advert), method: :post, class: 'btn btn-success pull-right' %>
+  <% end %>
 </div>
 
