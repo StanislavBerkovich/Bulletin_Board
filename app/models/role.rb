@@ -13,4 +13,12 @@ class Role < ActiveRecord::Base
     Role.find(2)
   end
 
+  def Role.get_avalible
+    Role.pluck(:name)
+  end
+
+  def to_s
+    name
+  end
+
 end

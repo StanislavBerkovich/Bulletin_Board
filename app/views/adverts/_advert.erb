@@ -1,6 +1,12 @@
 <div class="well">
   <p><%= advert.body %></p>
+
   <p><%= advert.type %></p>
+
   <p><%= advert.state %></p>
-  <small class='pull-right'><%= full_name advert.user %></small>
+  <% if can? :edit, advert.user %>
+      <%= link_to full_name(advert.user), edit_user_registration_path(advert.user), method: :get %>
+  <% else %>
+      <small class='pull-right'><%= full_name advert.user %></small>
+  <% end %>
 </div>

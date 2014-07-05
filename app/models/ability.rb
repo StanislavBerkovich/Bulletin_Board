@@ -14,12 +14,13 @@ class Ability
         can [:destroy], Type do |t|
           t.adverts.empty?
         end
+        can :assign_roles, User
         cannot [:edit, :create], Advert
-      elsif user.is Role.user_role
+      elsif user.is? Role.user_role
         can :read, :all
         can :create, Advert
         can [:update, :destroy], Advert do |advert|
-          advert.try(:user) == user
+          (advert.try(:state) == :draft ||  advert.try(:state) == :archives)  && advert.try(:user) == user
         end
         can :update, User do |u|
           u == user

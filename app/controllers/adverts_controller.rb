@@ -1,5 +1,4 @@
 class AdvertsController < ApplicationController
-  load_and_authorize_resource :nested => :article
 
   before_filter :authenticate_user!, except: [:show, :index]
   before_action :set_advert, only: [:show, :edit, :update, :destroy]
