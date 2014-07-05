@@ -5,8 +5,8 @@
         <li>  <%= button_to 'Log out', destroy_user_session_path, :method => :delete, class: 'btn btn-warning btn-block' %></li>
     <% else %>
         <li><p>You are Guest</p></li>
-        <li> <%= button_to 'Log in', new_user_session_path, class: 'btn btn-primary btn-block' %></li>
-        <li> <%= button_to 'Registration', new_user_registration_path, class: 'btn btn-block' %></li>
+        <li> <%= button_to 'Log in', new_user_session_path, method: :get, class: 'btn btn-primary btn-block' %></li>
+        <li> <%= button_to 'Registration', new_user_registration_path, method: :get, class: 'btn btn-block' %></li>
     <% end %>
 
     <ul class="nav nav-header">Your Ability</ul>

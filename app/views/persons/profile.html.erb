@@ -1,2 +1,24 @@
-<h1>Persons#profile</h1>
-<p>Find me in app/views/persons/profile.html.erb</p>
+<div class="hero-unit">
+  <h1><%= full_name @person %></h1>
+
+  <p><strong>Email:</strong><%= @person.email %>
+
+  <p><strong>Count of adverts: </strong><%= @adverts_count %></p>
+
+  <% if can? :edit, @person %>
+      <%= link_to "Edit user", persons_edit_path(id: @person), class: 'btn btn-warning' %>
+  <% end %>
+
+  <% if can? :destroy, @person %>
+      <%= link_to "Delete user", persons_delete_path(id: @person), method: :delete, class: 'btn btn-danger' %>
+  <% end %>
+</div>
+
+<% if @adverts.empty? %>
+    <h3>User haven't adverts!</h3>
+<% else %>
+    <h3>All adverts of user:</h3>
+<% end %>
+
+<%= render @adverts %>
+<%= paginate @adverts %>

@@ -3,7 +3,7 @@ class CreateAdverts < ActiveRecord::Migration
     create_table :adverts do |t|
       t.belongs_to :user
 
-      t.string :body
+      t.string :body, null: false
 
       t.timestamps
     end

@@ -5,6 +5,8 @@ class CreateTypes < ActiveRecord::Migration
       t.timestamps
     end
 
+    add_index :types, :name,  unique: true
+
     change_table :adverts do |t|
       t.belongs_to :type
     end

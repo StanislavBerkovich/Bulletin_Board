@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :adverts
+  has_many :adverts, dependent: :destroy
   belongs_to :role
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

@@ -1,8 +1,9 @@
 class PersonsController < ApplicationController
-  before_action :set_person, only: [:edit, :profile, :save_changes]
+  before_action :set_person, only: [:edit, :profile, :save_changes, :delete]
 
   def profile
-
+    @adverts_count = Advert.count_of @person
+    @adverts = @person.adverts.order(:id).page(params[:page]).per(10)
   end
 
   def edit
@@ -20,12 +21,18 @@ class PersonsController < ApplicationController
     redirect_to persons_profile_path id: @person
   end
 
+  def delete
+    @person.destroy
+    redirect_to root_path
+  end
+
+
   private
 
   def set_person
     @person = User.find(params[:id])
-
   end
+
 
   def person_params
     p = params.require('user').permit(:email, :name, :surname, :password, :role)

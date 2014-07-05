@@ -12,4 +12,8 @@ class Advert < ActiveRecord::Base
     adverts = Advert.where ['updated_at >= ?', 1.minute.ago]
     adverts.each { |advert| advert.state = :archives }
   end
+
+  def self.count_of author
+    Advert.count(user: author)
+  end
 end

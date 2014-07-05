@@ -6,7 +6,7 @@
 
       <p><%= advert.state %></p>
       <% if can? :edit, advert.user %>
-          <%= link_to full_name(advert.user), persons_edit_path(id: advert.user) %>
+          <%= link_to full_name(advert.user), persons_profile_path(id: advert.user) %>
       <% else %>
           <small class='pull-right'><%= full_name advert.user %></small>
       <% end %>

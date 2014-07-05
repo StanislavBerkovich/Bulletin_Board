@@ -5,14 +5,14 @@ Rails.application.routes.draw do
   get 'persons/profile'
   get 'persons/edit'
   put 'persons/save_changes'
-
+  delete 'persons/delete'
   get 'home/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'home#index'
+  root 'home#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -9,7 +9,7 @@ class Ability
 
       if user.is? Role.admin_role
         can :destroy, Advert
-        can [:edit, :create], User
+        can [:edit, :create, :destroy], User
         can [:create], Type
         can [:destroy], Type do |t|
           t.adverts.empty?
