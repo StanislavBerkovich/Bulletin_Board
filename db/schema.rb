@@ -11,11 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140705093747) do
+ActiveRecord::Schema.define(version: 20140704193453) do
 
   create_table "adverts", force: true do |t|
     t.integer  "user_id"
-    t.string   "body"
+    t.string   "body",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "state"
@@ -23,16 +23,20 @@ ActiveRecord::Schema.define(version: 20140705093747) do
   end
 
   create_table "roles", force: true do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "roles", ["name"], name: "index_roles_on_name", unique: true
 
   create_table "types", force: true do |t|
     t.string   "name",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "types", ["name"], name: "index_types_on_name", unique: true
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -45,8 +49,8 @@ ActiveRecord::Schema.define(version: 20140705093747) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "name"
-    t.string   "surname"
+    t.string   "name",                                null: false
+    t.string   "surname",                             null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "role_id"

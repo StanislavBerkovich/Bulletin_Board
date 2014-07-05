@@ -22,5 +22,9 @@
     <% if can? :create, User %>
         <li><%= button_to 'Create new user', persons_new_path, method: :get, class: 'btn btn-block' %></li>
     <% end %>
+
+    <% if can? :publish, Advert %>
+        <li><%= button_to 'Publish new advert', adverts_nonpublished_path, method: :get, class: 'btn btn-block' %></li>
+    <% end %>
   </ul>
 </div>
