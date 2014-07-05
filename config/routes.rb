@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'admin_job/nonpublished'
+
   resources :adverts
   get 'adverts/nonpublished'
   devise_for :users, :controllers => {:registrations => "registrations"}

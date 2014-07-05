@@ -60,10 +60,6 @@ class AdvertsController < ApplicationController
     end
   end
 
-  def nonpublished
-    @adverts = Advert.where(state: :new).page(params[:page]).per(10)
-  end
-
   # DELETE /adverts/1
   # DELETE /adverts/1.json
   def destroy

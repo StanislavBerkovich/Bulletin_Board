@@ -24,7 +24,7 @@
     <% end %>
 
     <% if can? :publish, Advert %>
-        <li><%= button_to 'Publish new advert', adverts_nonpublished_path, method: :get, class: 'btn btn-block' %></li>
+        <li><%= button_to 'Publish new advert', admin_job_nonpublished_path, method: :get, class: 'btn btn-block' %></li>
     <% end %>
   </ul>
 </div>
