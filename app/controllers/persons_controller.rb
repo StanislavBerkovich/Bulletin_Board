@@ -26,11 +26,19 @@ class PersonsController < ApplicationController
     redirect_to root_path
   end
 
+  def new
+    @person = User.new
+  end
+
 
   private
 
   def set_person
-    @person = User.find(params[:id])
+    if params.include? :id
+      @person = User.find(params[:id])
+    else
+      @person = User.new
+    end
   end
 
 

@@ -10,11 +10,17 @@
     <% end %>
 
     <ul class="nav nav-header">Your Ability</ul>
-    <% if can? :create, Advert.new %>
+
+    <% if can? :create, Advert %>
         <li><%= button_to "New advert", new_advert_path, method: :get, class: 'btn btn-success btn-block' %></li>
     <% end %>
+
     <% if can? :edit, current_user %>
         <li><%= button_to "Edit my profile", edit_user_registration_path(current_user), method: :get, class: 'btn btn-warning btn-block' %></li>
+    <% end %>
+
+    <% if can? :create, User %>
+        <li><%= button_to 'Create new user', persons_new_path, method: :get, class: 'btn btn-block' %></li>
     <% end %>
   </ul>
 </div>

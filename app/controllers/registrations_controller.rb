@@ -6,7 +6,6 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
     user = User.create(sign_up_params)
-    user.role = Role.user_role
     redirect_to new_user_session_path
   end
 
@@ -18,7 +17,9 @@ class RegistrationsController < Devise::RegistrationsController
 
 
   def sign_up_params
-    downcase_params params.require(:user).permit(:name, :surname, :email, :password, :password_confirmation)
+    p = downcase_params params.require(:user).permit(:name, :surname, :email, :password, :password_confirmation)
+    p[:role] = Role.find_by(name: params[:role]) || Role.user_role
+    p
   end
 
   def downcase_params(p)

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {:registrations => "registrations"}
   get 'persons/profile'
   get 'persons/edit'
+  get 'persons/new'
   put 'persons/save_changes'
   delete 'persons/delete'
   get 'home/index'

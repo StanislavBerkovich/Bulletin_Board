@@ -5,6 +5,12 @@
 
   <div class="form-inputs">
     <%= f.input :email, required: true, autofocus: true %>
+
+    <% if can? :assign_roles, @person %>
+        <label>Select role:</label>
+        <%= f.select :role, Role.get_avalible %>
+    <% end %>
+
     <%= f.input :password, required: true %>
     <%= f.input :password_confirmation, required: true %>
     <%= f.input :name, required: true %>
