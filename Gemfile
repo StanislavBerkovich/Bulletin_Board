@@ -54,3 +54,5 @@ gem 'devise'
 
 gem 'whenever'
 
+gem 'cancan'
+
