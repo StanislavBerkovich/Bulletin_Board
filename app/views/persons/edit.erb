@@ -1,0 +1,29 @@
+<h2>Edit user: <%= full_name @person %></h2>
+
+<%= simple_form_for(@person, url: persons_save_changes_path(id: @person), html: {method: :put}) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
+      <%= f.input :name, required: false, autofocus:true %>
+
+      <%= f.input :surname, required: false %>
+      <%= f.input :email, required: false%>
+
+      <% if can? :assign_roles, @person %>
+        <label>Select role:</label>
+        <%= f.select :role, Role.get_avalible %>
+      <% end %>
+      <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
+      <%= f.input :password_confirmation, required: false %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Update" %>
+    </div>
+<% end %>
+
+<h3>Cancel this account</h3>
+
+<p>Unhappy? <%= link_to "Cancel this account", registration_path(@person), data: {confirm: "Are you sure?"}, method: :delete %></p>
+
+<%= link_to "Back", :back %>

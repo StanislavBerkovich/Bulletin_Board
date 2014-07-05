@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => {:registrations => "registrations"}
   get 'persons/profile'
+  get 'persons/edit'
+  put 'persons/save_changes'
 
   get 'home/index'
 

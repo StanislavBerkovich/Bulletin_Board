@@ -1,12 +1,17 @@
-<div class="well">
-  <p><%= advert.body %></p>
+<%= link_to advert_path(advert) do %>
+    <div class="well">
+      <p><%= advert.body %></p>
 
-  <p><%= advert.type %></p>
+      <p><%= advert.type %></p>
 
-  <p><%= advert.state %></p>
-  <% if can? :edit, advert.user %>
-      <%= link_to full_name(advert.user), edit_user_registration_path(advert.user), method: :get %>
-  <% else %>
-      <small class='pull-right'><%= full_name advert.user %></small>
-  <% end %>
-</div>
+      <p><%= advert.state %></p>
+      <% if can? :edit, advert.user %>
+          <%= link_to full_name(advert.user), persons_edit_path(id: advert.user) %>
+      <% else %>
+          <small class='pull-right'><%= full_name advert.user %></small>
+      <% end %>
+      <% if can? :destroy, advert.user %>
+      <%end%>
+    </div>
+
+<% end %>

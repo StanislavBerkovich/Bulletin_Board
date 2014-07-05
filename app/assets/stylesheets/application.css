@@ -13,3 +13,23 @@
  *= require_tree .
  *= require_self
  */
+a{
+    text-decoration: none;
+}
+
+a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    background: none;
+    color: black;
+    text-decoration: none;
+}
+
+.btn:hover{
+    background: none;
+    color: black;
+    text-decoration: none;
+}
