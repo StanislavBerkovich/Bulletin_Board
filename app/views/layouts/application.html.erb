@@ -64,22 +64,7 @@
       <%= yield %>
     </div>
     <div class="span3">
-      <div class="well sidebar-nav">
-        <% if user_signed_in? %>
-            <p>Hi, <%= full_name current_user %></p>
-            <%= link_to 'Log out', destroy_user_session_path, :method => :delete, class: 'btn btn-warning' %>
-        <% else %>
-            <p>You are Guest</p>
-            <%= link_to 'Log in', new_user_session_path, class: 'btn btn-primary' %>
-            <%= link_to 'Registration', new_user_registration_path, class: 'btn' %>
-        <% end %>
-        <ul class="nav nav-list">
-          <li class="nav-header">Your Ability</li>
-          <li><%= button_to "New advert", new_advert_path,method: :get, class: 'btn btn-success' %></li>
-          <li><%= link_to "Link2", "/path2" %></li>
-          <li><%= link_to "Link3", "/path3" %></li>
-        </ul>
-      </div>
+        <%= render 'layouts/user_panel' %>
     </div>
   </div>
 
