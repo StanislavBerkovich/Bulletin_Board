@@ -26,6 +26,9 @@
         <% if can? :publish, Advert %>
             <li><%= button_to 'Publish new advert', admin_job_nonpublished_path, method: :get, class: 'btn btn-block' %></li>
         <% end %>
+        <% if can? :create, Type %>
+            <li><%= button_to 'Crete new type of advert', admin_job_new_advert_type_path, method: :get, class: 'btn btn-block' %></li>
+        <% end %>
 
     <% end %>
   </ul>

@@ -18,4 +18,14 @@ class AdminJobController < ApplicationController
     advert.save
     redirect_to admin_job_nonpublished_path
   end
+
+  def new_advert_type
+    @type = Type.new
+  end
+
+  def create_type
+    Type.create(params.require('type').permit(:name))
+    redirect_to :root
+  end
+
 end

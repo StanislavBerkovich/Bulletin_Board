@@ -1,0 +1,9 @@
+<%= simple_form_for(@type, url: admin_job_create_type_path,  html: {method: :put}) do |f| %>
+    <div class="form-inputs">
+        <%= f.input :name, required: true, autofocus:true %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Update" %>
+    </div>
+<% end %>
