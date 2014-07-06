@@ -17,7 +17,7 @@
 #   runner "AnotherModel.prune_old_records"
 # end
 
-every :day, :at => '10:27pm' do
+every 2.minutes  do
   runner 'Advert.send_in_archive'
 end
 

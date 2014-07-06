@@ -30,6 +30,10 @@ class PersonsController < ApplicationController
     @person = User.new
   end
 
+  def index
+    @persons = User.order(:id).page(params[:page]).per(10)
+  end
+
 
   private
 

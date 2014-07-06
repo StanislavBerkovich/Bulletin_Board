@@ -1,0 +1,7 @@
+<% @persons.each do |person| %>
+    <div class="well">
+      <h3><%= link_to full_name(person), persons_profile_path(id: person) %></h3>
+
+      <p><%= person.email %></p>
+    </div>
+<% end %>

@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
   get 'admin_job/nonpublished'
   post 'admin_job/publish'
-
+  post 'admin_job/rejected'
   resources :adverts
   get 'adverts/nonpublished'
   devise_for :users, :controllers => {:registrations => "registrations"}
   get 'persons/profile'
+  get 'persons/index'
   get 'persons/edit'
   get 'persons/new'
   put 'persons/save_changes'

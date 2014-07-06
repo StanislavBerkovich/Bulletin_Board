@@ -8,7 +8,7 @@ class Ability
       user ||= User.new # guest user
 
       if user.is? Role.admin_role
-        can [:publish, :destroy], Advert
+        can [:manage, :destroy], Advert
         can [:edit, :create, :destroy], User
         can [:create], Type
         can [:destroy], Type do |t|
