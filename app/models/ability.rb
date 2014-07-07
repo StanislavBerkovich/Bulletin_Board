@@ -8,13 +8,13 @@ class Ability
       user ||= User.new # guest user
 
       if user.is? Role.admin_role
+        can :read, :all
         can [:manage, :destroy], Advert
-        can [:edit, :create, :destroy], User
+        can [:assign_roles, :edit, :create, :destroy], User
         can [:create], Type
         can [:destroy], Type do |t|
           t.adverts.empty?
         end
-        can :assign_roles, User
         cannot [:edit, :create], Advert
       elsif user.is? Role.user_role
         can :read, :all
@@ -25,9 +25,10 @@ class Ability
         can :update, User do |u|
           u == user
         end
+        can :read, User
       elsif
         can :read, Advert do |advert|
-          advert.try(:state) == :new
+          advert.try(:state) == :published
         end
       end
     end

@@ -4,7 +4,7 @@ class PersonsController < ApplicationController
 
   def profile
     @adverts_count = Advert.count_of @person
-    @adverts = @person.adverts.order(:id).page(params[:page]).per(10)
+    @adverts = @person.adverts.reverse_order(:id).page(params[:page]).per(5)
   end
 
   def edit

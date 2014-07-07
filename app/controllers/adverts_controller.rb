@@ -6,7 +6,7 @@ class AdvertsController < ApplicationController
   # GET /adverts
   # GET /adverts.json
   def index
-    @adverts = Advert.order(:id).page(params[:page]).per(10)
+    @adverts = Advert.reverse_order.order(:id).page(params[:page]).per(5)
   end
 
   # GET /adverts/1
@@ -80,8 +80,6 @@ class AdvertsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def advert_params
     p = params.require(:advert).permit(:body, pictures_attributes: [:image])
-    5.times { puts "****************************************************" }
-    puts p
     p[:type] = Type.find_by(name: params[:advert][:type])
     p
   end

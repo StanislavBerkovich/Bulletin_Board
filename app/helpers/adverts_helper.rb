@@ -10,7 +10,7 @@ module AdvertsHelper
       when :published
         html << 'success'
     end
-    html << "'>#{state}</div>"
+    html << "'>#{state.capitalize}</div>"
     html.html_safe
   end
 end

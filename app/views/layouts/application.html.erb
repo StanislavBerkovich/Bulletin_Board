@@ -49,11 +49,14 @@
       <%= link_to 'BulletinBoard', root_path, class: "brand" %>
 
       <div class="container nav-collapse">
-        <% if can? :edit, User %>
-            <ul class="nav">
+        <ul class="nav">
+          <% if can? :edit, User %>
               <li> <%= link_to "All users", persons_index_path %></li>
-            </ul>
-        <% end %>
+          <% end %>
+          <% if  can? :create, Advert %>
+              <li><%= link_to "My profile", persons_profile_path(id: current_user) %></li>
+          <% end %>
+        </ul>
       </div>
     </div>
   </div>
