@@ -32,7 +32,7 @@ class PersonsController < ApplicationController
   end
 
   def index
-    @persons = User.order(:id).page(params[:page]).per(10)
+    @persons = User.order(:id).page(params[:page]).per(10) - [current_user]
   end
 
 
