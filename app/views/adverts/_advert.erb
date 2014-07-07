@@ -1,5 +1,5 @@
 <div class="well">
-  <% if can? :destroy, advert.user %>
+  <% if can? :destroy, advert %>
       <div id="options_panel" class="pull-right">
         <%= link_to '&times'.html_safe, advert, method: :delete, class: 'close', rel: "tooltip", title: "Delete", data: {placement: "top"} %>
       </div>
@@ -27,7 +27,7 @@
   </div>
 
   <% if can?(:manage, advert) and advert.state_is?(:new) %>
-      <%= link_to 'Publish advert'.html_safe, admin_job_publish_path(advert: advert),
+      <%= link_to 'Approve advert'.html_safe, admin_job_approve_path(advert: advert),
                   method: :post, class: 'btn btn-success pull-right' %>
       <%= link_to 'Rejected advert'.html_safe, admin_job_rejected_path(advert: advert),
                   method: :post, class: 'btn btn-danger pull-right' %>

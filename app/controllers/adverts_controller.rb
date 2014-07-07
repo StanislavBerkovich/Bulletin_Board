@@ -6,7 +6,7 @@ class AdvertsController < ApplicationController
   # GET /adverts
   # GET /adverts.json
   def index
-    @adverts = Advert.reverse_order.order(:id).page(params[:page]).per(5)
+    @adverts = Advert.order(:id).reverse_order.page(params[:page]).per(5)
   end
 
   # GET /adverts/1
@@ -31,7 +31,6 @@ class AdvertsController < ApplicationController
   # POST /adverts
   # POST /adverts.json
   def create
-    params[:rrt]
     @advert = Advert.new(advert_params)
     @advert.user = current_user
     @advert.state = :new
@@ -50,6 +49,7 @@ class AdvertsController < ApplicationController
   # PATCH/PUT /adverts/1
   # PATCH/PUT /adverts/1.json
   def update
+    @advert.state = :new
     respond_to do |format|
       if @advert.update(advert_params)
         format.html { redirect_to @advert, notice: 'Advert was successfully updated.' }
@@ -66,7 +66,7 @@ class AdvertsController < ApplicationController
   def destroy
     @advert.destroy
     respond_to do |format|
-      format.html { redirect_to adverts_url, notice: 'Advert was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'Advert was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -5,9 +5,9 @@ class AdminJobController < ApplicationController
     @adverts = Advert.where(state: :new).page(params[:page]).per(5)
   end
 
-  def publish
+  def approve
     advert = Advert.find(params[:advert])
-    advert.state = :published
+    advert.state = :approved
     advert.save
     redirect_to :back
   end

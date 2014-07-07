@@ -5,7 +5,7 @@ class Ability
 
 
     def initialize(user)
-      user ||= User.new # guest user
+      user ||= User.new
 
       if user.is? Role.admin_role
         can :read, :all
@@ -20,7 +20,7 @@ class Ability
         can :read, :all
         can :create, Advert
         can [:update, :destroy], Advert do |advert|
-          (advert.try(:state) == :draft ||  advert.try(:state) == :archives)  && advert.try(:user) == user
+         [:draft, :archives, :rejected].include?(advert.try(:state).try(:to_sym)) && advert.try(:user) == user
         end
         can :update, User do |u|
           u == user
