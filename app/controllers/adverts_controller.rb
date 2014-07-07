@@ -31,6 +31,7 @@ class AdvertsController < ApplicationController
   # POST /adverts
   # POST /adverts.json
   def create
+    params[:rrt]
     @advert = Advert.new(advert_params)
     @advert.user = current_user
     @advert.state = :new
@@ -71,15 +72,17 @@ class AdvertsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_advert
-      @advert = Advert.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_advert
+    @advert = Advert.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def advert_params
-      p = params.require(:advert).permit(:body)
-      p[:type] = Type.find_by(name: params[:advert][:type])
-      p
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def advert_params
+    p = params.require(:advert).permit(:body, pictures_attributes: [:image])
+    5.times { puts "****************************************************" }
+    puts p
+    p[:type] = Type.find_by(name: params[:advert][:type])
+    p
+  end
 end

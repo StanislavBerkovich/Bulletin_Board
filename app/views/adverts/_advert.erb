@@ -1,4 +1,9 @@
 <div class="well">
+  <% if can? :destroy, advert.user %>
+      <div id="options_panel" class="pull-right">
+        <%= link_to '&times'.html_safe, advert, method: :delete, class: 'close', rel: "tooltip", title: "Удалить", data: {placement: "top"} %>
+      </div>
+  <% end %>
   <%= show_state advert %>
   <%= link_to advert_path(advert) do %>
       <p><%= advert.body %></p>
@@ -19,11 +24,13 @@
                   method: :post, class: 'btn btn-danger pull-right' %>
 
   <% end %>
-  <% if can? :destroy, advert.user %>
-      <div id="options_panel" class="pull-right">
-        <%= link_to '&times'.html_safe, advert, method: :delete, class: 'close', rel: "tooltip", title: "Удалить", data: {placement: "top"} %>
-      </div>
-  <% end %>
+
+  <div>
+    <% advert.pictures.each do |p| %>
+        <%= image_tag p.url %>
+    <% end %>
+  </div>
+
 
 </div>
 

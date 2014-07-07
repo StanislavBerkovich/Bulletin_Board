@@ -5,7 +5,9 @@
     </div>
 
 
- <%= f.select :type, @types %>
+    <%= f.select :type, @types %>
+
+    <%= f.file_field('advert_pictures_image', multiple: true, name: "advert[pictures_attributes][][image]") %>
 
     <div class="form-actions">
       <%= f.button :submit %>

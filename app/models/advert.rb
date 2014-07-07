@@ -3,8 +3,10 @@ class Advert < ActiveRecord::Base
   extend Enumerize
   belongs_to :user
   belongs_to :type
+  has_many  :pictures, dependent: :destroy
 
   enumerize :state, in: [:draft, :new, :rejected, :approved, :published, :archives]
+  accepts_nested_attributes_for :pictures, :allow_destroy => true
 
 
   def self.send_in_archive
