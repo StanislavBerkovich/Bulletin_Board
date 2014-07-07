@@ -66,12 +66,6 @@
   <div class="row">
     <div class="span9">
       <%= bootstrap_flash %>
-      <% if flash[:notice] %>
-          <div class="notice"><%= flash[:notice] %></div>
-      <% end %>
-      <% if flash[:error] %>
-          <div class="error"><%= flash[:notice] %></div>
-      <% end %>
       <%= yield %>
     </div>
     <div class="span3">
