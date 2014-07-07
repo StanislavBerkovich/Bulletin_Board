@@ -21,8 +21,10 @@ every 1.day, :at => '11:50 pm' do
   runner "Advert.send_in_archive", :environment => :development
 end
 
-every 10.minutes do
+every 1.day, :at => '12:00 am' do
   runner "Advert.publish_approved", :environment => :development
 end
+
+#whenever --update-crontab board
 
 # Learn more: http://github.com/javan/whenever
