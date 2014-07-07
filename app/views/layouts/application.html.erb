@@ -66,6 +66,12 @@
   <div class="row">
     <div class="span9">
       <%= bootstrap_flash %>
+      <% if flash[:notice] %>
+          <div class="notice"><%= flash[:notice] %></div>
+      <% end %>
+      <% if flash[:error] %>
+          <div class="error"><%= flash[:notice] %></div>
+      <% end %>
       <%= yield %>
     </div>
     <div class="span3">
@@ -74,7 +80,9 @@
   </div>
 
   <footer>
-    <p>&copy; Company 2014</p>
+    <p>&copy; Stanislav Berkovich 2014</p>
+    <p>mobile: +375 (25) 5455827</p>
+    <p>Skype: stanislav070895</p>
   </footer>
 
 </div>

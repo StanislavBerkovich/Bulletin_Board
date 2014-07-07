@@ -1,6 +1,12 @@
 class AdminJobController < ApplicationController
   before_filter :authenticate_user!
 
+
+  rescue_from SQLite3::ConstraintException do |exception|
+    flash[:error] = "Access denied."
+    redirect_to :back
+  end
+
   def nonpublished
     @adverts = Advert.where(state: :new).page(params[:page]).per(5)
   end
@@ -19,13 +25,20 @@ class AdminJobController < ApplicationController
     redirect_to :back
   end
 
-  def new_advert_type
+  def manage_advert_type
     @type = Type.new
+    @types = Type.all.sort_by { |t| t.name }
   end
 
   def create_type
-    Type.create(params.require('type').permit(:name))
+    Type.new(params.require('type').permit(:name)).save
     redirect_to :root
+  end
+
+  def delete_type
+    @type = Type.find(params[:id])
+    @type.destroy
+    redirect_to :back
   end
 
 end

@@ -4,10 +4,15 @@
       <%= f.input :body %>
     </div>
 
+    <div class="form-inputs">
+      <%= f.label "Type of advert" %>
+      <%= f.select :type, @types %>
+    </div>
 
-    <%= f.select :type, @types %>
-
-    <%= f.file_field('advert_pictures_image', multiple: true, name: "advert[pictures_attributes][][image]") %>
+    <div class="form-inputs">
+      <%= f.label "Choose images" %>
+      <%= f.file_field('advert_pictures_image', multiple: true, name: "advert[pictures_attributes][][image]") %>
+    </div>
 
     <div class="form-actions">
       <%= f.button :submit %>

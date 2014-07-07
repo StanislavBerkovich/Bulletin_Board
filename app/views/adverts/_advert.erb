@@ -26,14 +26,20 @@
     <% end %>
   </div>
 
-  <% if can?(:manage, advert) and advert.state_is?(:new) %>
-      <%= link_to 'Approve advert'.html_safe, admin_job_approve_path(advert: advert),
+  <% if can?(:approve, advert) %>
+      <%= link_to 'Approve advert', admin_job_approve_path(advert: advert),
                   method: :post, class: 'btn btn-success pull-right' %>
-      <%= link_to 'Rejected advert'.html_safe, admin_job_rejected_path(advert: advert),
+
+  <% end %>
+  <% if can?(:reject, advert) %>
+      <%= link_to 'Rejected advert', admin_job_rejected_path(advert: advert),
                   method: :post, class: 'btn btn-danger pull-right' %>
   <% end %>
+  <% if can? :update, advert %>
+      <%= link_to 'Update advert', edit_advert_path(advert), class: 'btn btn-default' %>
+  <% end %>
 
-  <% if can?  :read, advert %>
+  <% if can? :read, advert %>
       <%= link_to "Show advert", advert_path(advert), class: 'btn btn-success' %>
   <% end %>
 

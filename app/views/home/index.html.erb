@@ -1,2 +1,7 @@
-<%= render @adverts %>
-<%= paginate @adverts %>
+<% if @adverts.empty? %>
+    <h3>No adverts =(</h3>
+<% else %>
+    <h3>Published adverts</h3>
+    <%= render @adverts %>
+    <%= paginate @adverts %>
+<% end %>

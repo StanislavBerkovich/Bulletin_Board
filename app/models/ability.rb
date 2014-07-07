@@ -9,10 +9,13 @@ class Ability
 
       if user.is? Role.admin_role
         can :read, :all
-        can [:manage, :destroy], Advert
+        can [:approve, :reject], Advert do |advert|
+          advert.try(:state_is?, :new)
+        end
+        can :destroy, Advert
         can [:assign_roles, :edit, :create, :destroy], User
-        can [:create], Type
-        can [:destroy], Type do |t|
+        can :create, Type
+        can :destroy, Type do |t|
           t.adverts.empty?
         end
         cannot [:edit, :create], Advert
@@ -28,7 +31,7 @@ class Ability
         can :read, User
       elsif
         can :read, Advert do |advert|
-          advert.try(:state) == :published
+          advert.try(:state_is?, :published)
         end
       end
     end

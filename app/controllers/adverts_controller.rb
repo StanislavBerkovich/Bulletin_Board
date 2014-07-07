@@ -23,6 +23,7 @@ class AdvertsController < ApplicationController
 
   # GET /adverts/1/edit
   def edit
+    @advert.state = :draft
     @types = [@advert.type.name]
     @types << Type.pluck(:name)
     @types.flatten!.sort!.uniq!
