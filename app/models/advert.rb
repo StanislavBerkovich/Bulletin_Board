@@ -25,4 +25,5 @@ class Advert < ActiveRecord::Base
   def state_is? require_state
     state == require_state.to_s
   end
+
 end
