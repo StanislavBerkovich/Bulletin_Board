@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   post 'admin_job/approve'
   delete 'admin_job/delete_type'
   put 'admin_job/create_type'
-  post 'admin_job/rejected'
+  get 'admin_job/reject_reason'
+  put 'admin_job/rejected'
   resources :adverts
   get 'adverts/nonpublished'
   devise_for :users, :controllers => {:registrations => "registrations"}

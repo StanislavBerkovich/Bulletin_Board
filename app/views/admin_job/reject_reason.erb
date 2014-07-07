@@ -1,0 +1,17 @@
+<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+  <div class="modal-header">
+    <h3 id="myModalLabel">Please, enter reject reason:</h3>
+  </div>
+  <%= simple_form_for(@advert, url: admin_job_rejected_path(id: @advert), html: {method: :put}) do |f| %>
+
+      <div class="modal-body">
+        <div>
+          <%= f.input :reject_reason, value: 'because...' %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <%= f.submit "Reject", class: 'btn btn' %>
+      </div>
+  <% end %>
+</div>

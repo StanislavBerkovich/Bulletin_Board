@@ -18,29 +18,31 @@
       <p><%= full_name advert.user %></p>
   <% end %>
 
-  <label>Pictures:</label>
+  <% unless advert.pictures.empty? %>
+      <label>Pictures:</label>
 
+      <div>
+        <% advert.pictures.each do |p| %>
+            <%= image_tag p.url(:small) %>
+        <% end %>
+      </div>
+  <% end %>
   <div>
-    <% advert.pictures.each do |p| %>
-        <%= image_tag p.url(:small) %>
+    <% if can?(:approve, advert) %>
+        <%= link_to 'Approve advert', admin_job_approve_path(id: advert),
+                    method: :post, class: 'btn btn-success pull-right' %>
+
+    <% end %>
+    <% if can?(:reject, advert) %>
+        <%= link_to 'Rejected advert', admin_job_reject_reason_path(id: advert),
+                    method: :get, class: 'btn btn-danger pull-right' %>
+    <% end %>
+    <% if can? :update, advert %>
+        <%= link_to 'Update advert', edit_advert_path(advert), class: 'btn btn-default' %>
+    <% end %>
+
+    <% if can? :read, advert %>
+        <%= link_to "Show advert", advert_path(advert), class: 'btn btn-success' %>
     <% end %>
   </div>
-
-  <% if can?(:approve, advert) %>
-      <%= link_to 'Approve advert', admin_job_approve_path(advert: advert),
-                  method: :post, class: 'btn btn-success pull-right' %>
-
-  <% end %>
-  <% if can?(:reject, advert) %>
-      <%= link_to 'Rejected advert', admin_job_rejected_path(advert: advert),
-                  method: :post, class: 'btn btn-danger pull-right' %>
-  <% end %>
-  <% if can? :update, advert %>
-      <%= link_to 'Update advert', edit_advert_path(advert), class: 'btn btn-default' %>
-  <% end %>
-
-  <% if can? :read, advert %>
-      <%= link_to "Show advert", advert_path(advert), class: 'btn btn-success' %>
-  <% end %>
-
 </div>

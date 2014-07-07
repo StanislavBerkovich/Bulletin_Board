@@ -24,8 +24,11 @@ class Ability
       elsif user.is? Role.user_role
         can :read, :all
         can :create, Advert
-        can [:update, :destroy], Advert do |advert|
-         [:draft, :archives, :rejected, :new, :approved].include?(advert.try(:state).try(:to_sym)) && advert.try(:user) == user
+        can :update, Advert do |advert|
+         [:draft, :archives, :rejected].include?(advert.try(:state).try(:to_sym)) && advert.try(:user) == user
+        end
+        can :destroy, Advert do |advert|
+          [:approved, :new].include?(advert.try(:state).try(:to_sym)) && advert.try(:user) == user
         end
         can :update, User do |u|
           u == user
