@@ -21,7 +21,7 @@ every 1.day, :at => '11:50 pm' do
   runner "Advert.send_in_archive", :environment => :development
 end
 
-every 1.day, :at => '12:00 am' do
+every 30.minutes do
   runner "Advert.publish_approved", :environment => :development
 end
 

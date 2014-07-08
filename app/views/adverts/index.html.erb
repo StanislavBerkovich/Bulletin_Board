@@ -1,2 +1,28 @@
-<%= render @adverts %>
-<%= paginate @adverts %>
+<% if @adverts.empty? %>
+    <h3>No adverts =(</h3>
+<% else %>
+    <%= search_form_for @search do |f| %>
+        <div class="field">
+          <%= f.label :body_cont, "Body contains" %>
+          <%= f.text_field :body_cont %>
+        </div>
+        <div class="actions"><%= f.submit "Search" %></div>
+    <% end %>
+    <div class="container-fluid">
+        <h5>Sort by :</h5>
+      <div class='span2'>
+        <%= sort_link @search, :body, "Body" %>
+      </div>
+      <div class='span2'>
+        <%= sort_link @search, :updated_at, "Updated_at" %>
+      </div>
+      <div class='span2'>
+        <%= sort_link @search, :type_id, "Type" %>
+      </div>
+    </div>
+
+
+    <h3>Adverts:</h3>
+    <%= render @adverts %>
+    <%= paginate @adverts %>
+<% end %>

@@ -6,7 +6,9 @@ class AdvertsController < ApplicationController
   # GET /adverts
   # GET /adverts.json
   def index
-    @adverts = Advert.order(:id).reverse_order.page(params[:page]).per(5)
+    @search = Advert.search(params[:q])
+    @types = Type.all
+    @adverts = @search.result.where(state: :published).order(:id).reverse_order.page(params[:page]).per(5)
   end
 
   # GET /adverts/1
@@ -51,6 +53,7 @@ class AdvertsController < ApplicationController
   # PATCH/PUT /adverts/1.json
   def update
     @advert.state = :new
+    @advert.reject_reason = nil
     respond_to do |format|
       if @advert.update(advert_params)
         format.html { redirect_to @advert, notice: 'Advert was successfully updated.' }

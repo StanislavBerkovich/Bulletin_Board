@@ -6,6 +6,16 @@ whenever --update-crontab board - для запуска автоматическ
 login: admin@admin.admin
 password: adminadmin
 
+и юзеры:
+login: stanislav.berkovich@gmail.com
+password: 11111111
+
+login: syper0708@mail.ru
+password: 12345678
+
+login: sun@tut.by
+password: suniscool
+
 
 
 

@@ -11,7 +11,7 @@
       <%= link_to full_name(@advert.user), persons_profile_path(id: @advert.user) %>
   <% else %>
       <%= full_name @advert.user %>
-<% end %>
+  <% end %>
 </p>
 
 <p>
@@ -19,13 +19,15 @@
   <%= @advert.type %>
 </p>
 
-<label>Pictures:</label>
+<% unless @advert.pictures.empty? %>
+    <label>Pictures:</label>
 
-<div>
-  <% @advert.pictures.each do |p| %>
-      <%= image_tag p.url(:medium) %>
-  <% end %>
-</div>
+    <div>
+      <% @advert.pictures.each do |p| %>
+          <%= image_tag p.url(:medium) %>
+      <% end %>
+    </div>
+<% end %>
 
 <% if can?(:manage, @advert) and @advert.state_is?(:new) %>
     <%= link_to 'Publish advert'.html_safe, admin_job_publish_path(advert: @advert),
@@ -35,4 +37,4 @@
 <% end %>
 
 
-<%= link_to 'Back', :back, class: 'btn btn'%>
+<%= link_to 'Back', :back, class: 'btn btn' %>

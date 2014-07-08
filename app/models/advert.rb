@@ -7,6 +7,7 @@ class Advert < ActiveRecord::Base
 
   enumerize :state, in: [:draft, :new, :rejected, :approved, :published, :archives]
   accepts_nested_attributes_for :pictures, :allow_destroy => true
+  accepts_nested_attributes_for :type
 
 
   def state_is? require_state
