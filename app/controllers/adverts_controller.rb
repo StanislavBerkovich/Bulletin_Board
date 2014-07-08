@@ -69,7 +69,7 @@ class AdvertsController < ApplicationController
   def destroy
     @advert.destroy
     respond_to do |format|
-      format.html { redirect_to root_path, notice: 'Advert was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Advert was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

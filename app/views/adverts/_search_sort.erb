@@ -7,18 +7,11 @@
       <%= f.search_field :type_name_cont %>
     </div>
     <div class="actions"><%= f.submit "Search" %></div>
-<% end %><div class='container-fluid'>
+<% end %>
 
-<div class='span2'>
-  <b>Sort by:</b>
-</div>
-<div class='span2'>
-  <%= sort_link(@search, :updated_at) %>
-</div>
-<div class='span2'>
-  <%= sort_link(@search, 'type_id', 'Type') %>
-</div>
-<div class='span2'>
-  <%= sort_link(@search, 'user_id', 'User') %>
-</div>
+  <h3>Sort by:</h3>
+<div class='btn-group'>
+ <button class='btn'> <%= sort_link @search, :updated_at%></button>
+  <button class='btn'> <%= sort_link @search, 'type_id', 'Type', class: 'btn' %></button>
+  <button class='btn'> <%= sort_link @search, 'user_id', 'User', class: 'btn' %></button>
 </div>

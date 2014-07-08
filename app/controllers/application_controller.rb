@@ -6,5 +6,11 @@ class ApplicationController < ActionController::Base
     redirect_to root_url
   end
 
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    flash[:error] = "Invalid id."
+    redirect_to root_url
+  end
+
+
   protect_from_forgery with: :exception
 end

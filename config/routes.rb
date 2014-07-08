@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
+
   get 'admin_job/nonpublished'
   get 'admin_job/manage_advert_type'
   post 'admin_job/approve'
+  post 'admin_job/approve_all'
   delete 'admin_job/delete_type'
   put 'admin_job/create_type'
   get 'admin_job/reject_reason'
-  put 'admin_job/rejected'
+  post 'admin_job/rejected'
+
   resources :adverts
-  get 'adverts/nonpublished'
+
   devise_for :users, :controllers => {:registrations => "registrations"}
   get 'persons/profile'
   get 'persons/index'

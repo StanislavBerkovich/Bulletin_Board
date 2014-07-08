@@ -13,7 +13,7 @@ class Ability
           advert.try(:state_is?, :new)
         end
         can :destroy, Advert do |advert|
-          !advert.try(:state_is? ,:published)
+          advert.try(:state_is?, :published)
         end
         can [:assign_roles, :edit, :create, :destroy], User
         can :create, Type
@@ -28,7 +28,7 @@ class Ability
          [:draft, :archives, :rejected].include?(advert.try(:state).try(:to_sym)) && advert.try(:user) == user
         end
         can :destroy, Advert do |advert|
-          [:approved, :new].include?(advert.try(:state).try(:to_sym)) && advert.try(:user) == user
+          advert.try(:user) == user
         end
         can :update, User do |u|
           u == user

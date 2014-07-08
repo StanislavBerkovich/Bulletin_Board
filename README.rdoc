@@ -16,6 +16,8 @@ password: 12345678
 login: sun@tut.by
 password: suniscool
 
+login: sasha@gmail.com
+password: 12345678
 
 
 

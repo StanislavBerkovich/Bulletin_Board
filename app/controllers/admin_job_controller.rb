@@ -22,8 +22,16 @@ class AdminJobController < ApplicationController
     end
   end
 
- def reject_reason
- end
+  def reject_reason
+  end
+
+  def approve_all
+    @adverts = Advert.where(state: :new)
+    @adverts.each { |advert| advert.update(state: :approved) }
+    respond_to do |format|
+      format.html { redirect_to :back, notice: 'Advert was successfully updated.' }
+    end
+  end
 
   def rejected
     @advert.state = :rejected
