@@ -1,0 +1,24 @@
+<h3>Search:</h3>
+<%= search_form_for @search do |f| %>
+    <div class="field">
+      <%= f.label :body_cont, "Body contains" %>
+      <%= f.search_field :body_cont %>
+      <%= f.label :type_name_cont, "Type contains" %>
+      <%= f.search_field :type_name_cont %>
+    </div>
+    <div class="actions"><%= f.submit "Search" %></div>
+<% end %><div class='container-fluid'>
+
+<div class='span2'>
+  <b>Sort by:</b>
+</div>
+<div class='span2'>
+  <%= sort_link(@search, :updated_at) %>
+</div>
+<div class='span2'>
+  <%= sort_link(@search, 'type_id', 'Type') %>
+</div>
+<div class='span2'>
+  <%= sort_link(@search, 'user_id', 'User') %>
+</div>
+</div>

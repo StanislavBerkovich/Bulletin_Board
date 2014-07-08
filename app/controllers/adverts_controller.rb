@@ -7,8 +7,7 @@ class AdvertsController < ApplicationController
   # GET /adverts.json
   def index
     @search = Advert.search(params[:q])
-    @types = Type.all
-    @adverts = @search.result.where(state: :published).order(:id).reverse_order.page(params[:page]).per(5)
+    @adverts = @search.result.includes(:type, :user).where(state: :published).page(params[:page]).per(5)
   end
 
   # GET /adverts/1
