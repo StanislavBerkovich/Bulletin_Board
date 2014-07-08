@@ -25,6 +25,10 @@ every 30.minutes do
   runner "Advert.publish_approved", :environment => :development
 end
 
+every 30.days do
+  runner "Advert.destroy_old", :environment => :development
+end
+
 #whenever --update-crontab board
 
 # Learn more: http://github.com/javan/whenever

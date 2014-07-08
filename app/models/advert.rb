@@ -21,6 +21,13 @@ class Advert < ActiveRecord::Base
 
   #For cron
 
+
+
+  def self.destroy_old
+    adverts = Advert.where('updated_at <= ?', 6.months.ago)
+    adverts.each { |advert| advert.destroy }
+  end
+
   def self.publish_approved
     adverts = Advert.where(state: 'approved')
     adverts.each { |advert| advert.update(state: :published) }
@@ -30,6 +37,5 @@ class Advert < ActiveRecord::Base
     adverts = Advert.where('updated_at <= ?', 3.days.ago)
     adverts.each { |advert| advert.update(state: :archives) }
   end
-
 
 end
