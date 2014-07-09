@@ -19,7 +19,7 @@ class PersonsController < ApplicationController
     @person.role = Role.find_by(name: input_params[:role]) || @person.role
     @person.password = input_params[:password] || @person.password
 
-    @person.save
+    @person.update input_params
     redirect_to persons_profile_path id: @person
   end
 
@@ -49,7 +49,7 @@ class PersonsController < ApplicationController
 
 
   def person_params
-    p = params.require('user').permit(:email, :name, :surname, :password, :role)
+    params.require('user').permit(:email, :name, :surname, :password, :role)
   end
 
 end

@@ -1,4 +1,5 @@
 class Role < ActiveRecord::Base
+  validates :name, presence: true, length: {minimum: 1}, uniqueness: true
   has_many :users
 
   def self.admin_role
