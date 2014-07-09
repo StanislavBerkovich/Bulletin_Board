@@ -1,4 +1,9 @@
 class User < ActiveRecord::Base
+  validates :email, uniqueness: true, presence: true
+  validates :password, presence: true
+  validates :name, presence: true
+  validates :surname, presence: true
+
   has_many :adverts, dependent: :destroy
   belongs_to :role
   # Include default devise modules. Others available are:

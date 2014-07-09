@@ -58,6 +58,5 @@ gem 'cancan'
 
 gem 'paperclip'
 
-group :development, :test do
-  gem 'rspec-rails', '~> 3.0.0'
-end
+gem "rspec-rails", :group => [:test, :development]
+gem "faker", :group => [:test, :development]
