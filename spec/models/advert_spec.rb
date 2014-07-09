@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Advert, :type => :model do
   before(:each) do
+    Role.create(name: 'admin')
+    Role.create(name: 'user')
     @type = Type.create name: Faker::Lorem.word
     @user = User.create email: Faker::Internet.email, password: Faker::Internet.password(8),
                         name: Faker::Name.first_name, surname: Faker::Name.last_name, role: Role.user_role

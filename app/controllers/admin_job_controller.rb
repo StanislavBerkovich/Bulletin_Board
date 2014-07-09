@@ -51,12 +51,8 @@ class AdminJobController < ApplicationController
   end
 
   def create_type
-    Type.new(params.require('type').permit(:name)).save
-    if Type.new(params.require('type').permit(:name)).save
-      format.html { redirect_to :back, notice: 'Type was successfully created.' }
-    else
-      format.html { redirect_to :back, error: 'Something went wrong!' }
-    end
+    Type.create(params.require('type').permit(:name))
+    redirect_to :back
   end
 
   def delete_type

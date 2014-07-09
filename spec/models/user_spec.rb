@@ -1,7 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe User, :type => :model do
+
   before(:each) do
+    Role.create(name: 'admin')
+    Role.create(name: 'user')
     @user = User.new email: Faker::Internet.email, password: Faker::Internet.password(8),
                      name: Faker::Name.first_name, surname: Faker::Name.last_name, role: Role.user_role
     @user_copy = User.new email: @user.email, password: @user.password,
@@ -23,11 +26,6 @@ RSpec.describe User, :type => :model do
 
   it 'is invalid without email' do
     @user.email = nil
-    @user.should_not be_valid
-  end
-
-  it 'is invalid without password' do
-    @user.password = nil
     @user.should_not be_valid
   end
 
@@ -58,6 +56,9 @@ RSpec.describe User, :type => :model do
     @user.destroy
     @user_copy.destroy
     @admin.destroy
+    Role.all.each do |r|
+      r.destroy
+    end
   end
 
 end

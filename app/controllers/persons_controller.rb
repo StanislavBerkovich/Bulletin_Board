@@ -13,6 +13,8 @@ class PersonsController < ApplicationController
 
   def save_changes
     input_params = person_params
+    5.times {puts "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"}
+    puts input_params
     @person.name = input_params[:name].downcase || @person.name
     @person.surname = input_params[:surname].downcase || @person.surname
     @person.email = input_params[:email] || @person.email
@@ -49,7 +51,9 @@ class PersonsController < ApplicationController
 
 
   def person_params
-    p = params.require('user').permit(:email, :name, :surname, :password, :role)
+    p = params.require('user').permit(:email, :name, :surname, :role)
+    p[:password] = params[:user][:password] if params[:user][:password] != ""
+    p
   end
 
 end
