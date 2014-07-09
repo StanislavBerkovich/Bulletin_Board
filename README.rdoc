@@ -19,6 +19,8 @@ password: suniscool
 login: sasha@gmail.com
 password: 12345678
 
+Возможно, какой либо из аккаунтов указан не верно ( мог его испортить, когда проверял приложение)
+
 
 
 This README would normally document whatever steps are necessary to get the
