@@ -2,7 +2,7 @@
     <h3>No nonbublished adverts.</h3>
 <% else %>
     <h3>Nonpublished adverts:</h3>
-    <%= button_to 'Approve all', admin_job_approve_all_path, class: 'btn btn-danger btn-block'%>
+    <%= button_to 'Approve all', admin_job_approve_all_path, class: 'btn btn-danger btn-block' %>
     <%= render @adverts %>
     <%= paginate @adverts %>
 <% end %>

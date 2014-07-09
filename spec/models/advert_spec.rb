@@ -59,7 +59,7 @@ RSpec.describe Advert, :type => :model do
     Advert.find(@advert.id).should == @advert
     Advert.destroy_old
     lambda { @advert.reload }.should raise_error(ActiveRecord::RecordNotFound)
-  @other_advert.reload.should == @other_advert
+    @other_advert.reload.should == @other_advert
   end
 
   it 'should publish all approved adverts' do
@@ -69,7 +69,7 @@ RSpec.describe Advert, :type => :model do
     other_advert_state = @other_advert.state
     Advert.publish_approved
     @advert.reload.state_is?('published').should == true
-    @other_advert.reload.state_is?(other_advert_state).should ==  true
+    @other_advert.reload.state_is?(other_advert_state).should == true
   end
 
   it 'should send in archive long time published adverts' do

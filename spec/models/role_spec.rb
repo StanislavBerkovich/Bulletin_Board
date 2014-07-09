@@ -5,26 +5,21 @@ RSpec.describe Role, :type => :model do
     Role.create(name: 'admin')
     Role.create(name: 'user')
     @role = Role.create(name: Faker::Lorem.word)
-
-    @user = User.create email: Faker::Internet.email, password: Faker::Internet.password(8),
-                        name: Faker::Name.first_name, surname: Faker::Name.last_name, role: Role.user_role
-    @admin = User.new email: Faker::Internet.email, password: Faker::Internet.password(8),
-                      name: Faker::Name.first_name, surname: Faker::Name.last_name, role: Role.admin_role
   end
 
   it 'is invalid wihout name' do
-    @role = Role.new(name: nil)
-    @role.should_not be_valid
+    role = Role.new(name: nil)
+    role.should_not be_valid
   end
 
   it 'must be uniqness' do
-    @role = Role.new name: 'admin'
-    @role.should_not be_valid
+    role = Role.new name: 'admin'
+    role.should_not be_valid
   end
 
   it 'is invalid with empty name' do
-    @role = Role.new name: ''
-    @role.should_not be_valid
+    role = Role.new name: ''
+    role.should_not be_valid
   end
 
   it 'is must give admin and user role' do
@@ -43,6 +38,7 @@ RSpec.describe Role, :type => :model do
 
 
   after(:all) do
-    Role.all.each{|r| r.destroy}
+    User.all.each { |r| r.destroy }
+    Role.all.each { |r| r.destroy }
   end
 end

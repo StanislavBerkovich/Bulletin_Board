@@ -18,7 +18,7 @@ class AdvertsControllerTest < ActionController::TestCase
 
   test "should create advert" do
     assert_difference('Advert.count') do
-      post :create, advert: { body: @advert.body }
+      post :create, advert: {body: @advert.body}
     end
 
     assert_redirected_to advert_path(assigns(:advert))
@@ -35,7 +35,7 @@ class AdvertsControllerTest < ActionController::TestCase
   end
 
   test "should update advert" do
-    patch :update, id: @advert, advert: { body: @advert.body }
+    patch :update, id: @advert, advert: {body: @advert.body}
     assert_redirected_to advert_path(assigns(:advert))
   end
 

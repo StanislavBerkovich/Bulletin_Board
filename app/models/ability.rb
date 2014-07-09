@@ -25,7 +25,7 @@ class Ability
         can :read, :all
         can :create, Advert
         can :update, Advert do |advert|
-         [:draft, :archives, :rejected].include?(advert.try(:state).try(:to_sym)) && advert.try(:user) == user
+          [:draft, :archives, :rejected].include?(advert.try(:state).try(:to_sym)) && advert.try(:user) == user
         end
         can :destroy, Advert do |advert|
           advert.try(:user) == user
@@ -34,10 +34,9 @@ class Ability
           u == user
         end
         can :read, User
-      elsif
-        can :read, Advert do |advert|
-          advert.try(:state_is?, :published)
-        end
+      elsif can :read, Advert do |advert|
+        advert.try(:state_is?, :published)
+      end
       end
     end
   end

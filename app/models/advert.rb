@@ -28,7 +28,6 @@ class Advert < ActiveRecord::Base
   #For cron
 
 
-
   def self.destroy_old
     adverts = Advert.where('updated_at <= ?', 6.months.ago)
     adverts.each { |advert| advert.destroy }

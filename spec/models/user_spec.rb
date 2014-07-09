@@ -5,9 +5,9 @@ RSpec.describe User, :type => :model do
     @user = User.new email: Faker::Internet.email, password: Faker::Internet.password(8),
                      name: Faker::Name.first_name, surname: Faker::Name.last_name, role: Role.user_role
     @user_copy = User.new email: @user.email, password: @user.password,
-                     name: @user.name, surname: @user.surname, role: @user.role
+                          name: @user.name, surname: @user.surname, role: @user.role
     @admin = User.new email: Faker::Internet.email, password: Faker::Internet.password(8),
-                     name: Faker::Name.first_name, surname: Faker::Name.last_name, role: Role.admin_role
+                      name: Faker::Name.first_name, surname: Faker::Name.last_name, role: Role.admin_role
   end
 
 
@@ -54,10 +54,9 @@ RSpec.describe User, :type => :model do
   end
 
 
-
-
   after(:each) do
     @user.destroy
+    @user_copy.destroy
     @admin.destroy
   end
 

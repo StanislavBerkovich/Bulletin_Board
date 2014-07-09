@@ -9,9 +9,9 @@
     <div class="actions"><%= f.submit "Search" %></div>
 <% end %>
 
-  <h3>Sort by:</h3>
+<h3>Sort by:</h3>
 <div class='btn-group'>
- <button class='btn'> <%= sort_link @search, :updated_at%></button>
+  <button class='btn'> <%= sort_link @search, :updated_at %></button>
   <button class='btn'> <%= sort_link @search, 'type_id', 'Type', class: 'btn' %></button>
   <button class='btn'> <%= sort_link @search, 'user_id', 'User', class: 'btn' %></button>
 </div>
