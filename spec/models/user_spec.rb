@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, :type => :model do
-  before(:all) do
+  before(:each) do
     @user = User.new email: Faker::Internet.email, password: Faker::Internet.password(8),
                      name: Faker::Name.first_name, surname: Faker::Name.last_name, role: Role.user_role
     @user_copy = User.new email: @user.email, password: @user.password,
@@ -56,7 +56,7 @@ RSpec.describe User, :type => :model do
 
 
 
-  after(:all) do
+  after(:each) do
     @user.destroy
     @admin.destroy
   end

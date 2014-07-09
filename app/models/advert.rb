@@ -1,11 +1,17 @@
 class Advert < ActiveRecord::Base
-  validate :body, presence: true
+  validates :body, presence: true, length: {minimum: 1}
+  validates :type, presence: true
+  validates :user, presence: true
+  validates :state, presence: true
+
   extend Enumerize
+
   belongs_to :user
   belongs_to :type
   has_many :pictures, dependent: :destroy
 
   enumerize :state, in: [:draft, :new, :rejected, :approved, :published, :archives]
+
   accepts_nested_attributes_for :pictures, :allow_destroy => true
   accepts_nested_attributes_for :type
 
@@ -34,7 +40,7 @@ class Advert < ActiveRecord::Base
   end
 
   def self.send_in_archive
-    adverts = Advert.where('updated_at <= ?', 3.days.ago)
+    adverts = Advert.where('updated_at <= ? AND state == ?', 3.days.ago, 'published')
     adverts.each { |advert| advert.update(state: :archives) }
   end
 
