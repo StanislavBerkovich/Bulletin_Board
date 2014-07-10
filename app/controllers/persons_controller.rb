@@ -12,16 +12,7 @@ class PersonsController < ApplicationController
   end
 
   def save_changes
-    input_params = person_params
-    5.times {puts "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"}
-    puts input_params
-    @person.name = input_params[:name].downcase || @person.name
-    @person.surname = input_params[:surname].downcase || @person.surname
-    @person.email = input_params[:email] || @person.email
-    @person.role = Role.find_by(name: input_params[:role]) || @person.role
-    @person.password = input_params[:password] || @person.password
-
-    @person.save
+    @person.update person_params
     redirect_to persons_profile_path id: @person
   end
 
@@ -51,8 +42,9 @@ class PersonsController < ApplicationController
 
 
   def person_params
-    p = params.require('user').permit(:email, :name, :surname, :role)
-    p[:password] = params[:user][:password] if params[:user][:password] != ""
+    p = params.require('user').permit(:email, :name, :surname)
+    p[:password] = params[:user][:password] if(params[:user][:password] != "")
+    p[:role] = Role.find_by(name: params[:user][:role]) if params[:user].has_key? :role
     p
   end
 
