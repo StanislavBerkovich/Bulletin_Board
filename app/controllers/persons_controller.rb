@@ -12,8 +12,11 @@ class PersonsController < ApplicationController
   end
 
   def save_changes
-    @person.update person_params
-    redirect_to persons_profile_path id: @person
+    if @person.update person_params
+      redirect_to persons_profile_path id: @person
+    else
+      redirect_to :back
+    end
   end
 
   def delete
@@ -43,7 +46,9 @@ class PersonsController < ApplicationController
 
   def person_params
     p = params.require('user').permit(:email, :name, :surname)
-    p[:password] = params[:user][:password] if(params[:user][:password] != "")
+    if params[:user][:password] != ''
+      p[:password], p[:password_confirmation] = params[:user][:password], params[:user][:password_confirmation]
+    end
     p[:role] = Role.find_by(name: params[:user][:role]) if params[:user].has_key? :role
     p
   end
