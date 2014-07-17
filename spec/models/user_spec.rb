@@ -20,8 +20,8 @@ RSpec.describe User, :type => :model do
   end
 
   it "can't add equals users" do
-    @user.should be_valid
-    @user_copy.should_not be_valid
+    @user.save
+    @user_copy.save.should == false
   end
 
   it 'is invalid without email' do
