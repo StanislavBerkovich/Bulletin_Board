@@ -7,7 +7,7 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     @user = User.new(sign_up_params)
     if @user.save
-      redirect_to new_user_session_path, notice: "Welcome! You successfully sign up"
+      redirect_to new_user_session_path, notice: "Welcome! You successfully sign up. Now you can enter by your email and password"
     else
       redirect_to new_user_registration_path, alert: get_errors(@user)
     end
