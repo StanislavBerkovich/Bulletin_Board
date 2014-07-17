@@ -8,20 +8,19 @@ class PersonsController < ApplicationController
   end
 
   def edit
-
   end
 
   def save_changes
     if @person.update person_params
-      redirect_to persons_profile_path id: @person
+      redirect_to persons_profile_path(id: @person), notice: "User was successfully updated"
     else
-      redirect_to :back
+      redirect_to :back, alert: get_errors(@person)
     end
   end
 
   def delete
     @person.destroy
-    redirect_to root_path
+    redirect_to root_path, notice: "User #{@person.email} was successfully deleted"
   end
 
   def new

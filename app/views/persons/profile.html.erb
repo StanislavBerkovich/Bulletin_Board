@@ -10,7 +10,8 @@
   <% end %>
 
   <% if can? :destroy, @person %>
-      <%= link_to "Delete user", persons_delete_path(id: @person), method: :delete, class: 'btn btn-danger' %>
+      <%= link_to "Delete user", persons_delete_path(id: @person), method: :delete,
+                  class: 'btn btn-danger', data: { confirm: "Are you sure?" } %>
   <% end %>
 </div>
 

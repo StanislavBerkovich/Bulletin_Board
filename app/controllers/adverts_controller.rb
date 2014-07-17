@@ -39,11 +39,10 @@ class AdvertsController < ApplicationController
     @advert.state = :new
     respond_to do |format|
       if @advert.save
-
         format.html { redirect_to @advert, notice: 'Advert was successfully created.' }
         format.json { render :show, status: :created, location: @advert }
       else
-        format.html { render :new }
+        format.html { render :new, alert: get_errors(@advert) }
         format.json { render json: @advert.errors, status: :unprocessable_entity }
       end
     end
@@ -60,7 +59,7 @@ class AdvertsController < ApplicationController
         format.html { redirect_to @advert, notice: 'Advert was successfully updated.' }
         format.json { render :show, status: :ok, location: @advert }
       else
-        format.html { render :edit }
+        format.html { render :edit, alert: get_errors(@advert) }
         format.json { render json: @advert.errors, status: :unprocessable_entity }
       end
     end

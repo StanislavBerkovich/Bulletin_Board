@@ -3,7 +3,7 @@ class AdminJobController < ApplicationController
   before_action :set_advert, only: [:approve, :rejected, :reject_reason]
 
   rescue_from SQLite3::ConstraintException do |exception|
-    flash[:error] = "Access denied."
+    flash[:alert] = "Access denied."
     redirect_to :back
   end
 
@@ -15,9 +15,9 @@ class AdminJobController < ApplicationController
     @advert.state = :approved
     respond_to do |format|
       if @advert.save
-        format.html { redirect_to :back, notice: 'Advert was successfully updated.' }
+        format.html { redirect_to :back, notice: 'Advert was successfully approved.' }
       else
-        format.html { redirect_to :back, error: 'Something went wrong!' }
+        format.html { redirect_to :back, alert: 'Something went wrong!' }
       end
     end
   end
@@ -29,7 +29,7 @@ class AdminJobController < ApplicationController
     @adverts = Advert.where(state: :new)
     @adverts.each { |advert| advert.update(state: :approved) }
     respond_to do |format|
-      format.html { redirect_to :back, notice: 'Advert was successfully updated.' }
+      format.html { redirect_to :back, notice: 'All new adverts were successfully approved.' }
     end
   end
 
@@ -38,9 +38,9 @@ class AdminJobController < ApplicationController
     @advert.reject_reason = "because #{params['advert'][:reject_reason].downcase}"
     respond_to do |format|
       if @advert.save
-        format.html { redirect_to admin_job_nonpublished_path, notice: 'Advert was successfully updated.' }
+        format.html { redirect_to admin_job_nonpublished_path, notice: 'Advert was successfully rejected.' }
       else
-        format.html { redirect_to admin_job_nonpublished_path, error: 'Something went wrong!' }
+        format.html { redirect_to admin_job_nonpublished_path, alert: 'Something went wrong!' }
       end
     end
   end
@@ -51,14 +51,22 @@ class AdminJobController < ApplicationController
   end
 
   def create_type
-    Type.create(params.require('type').permit(:name))
-    redirect_to :back
+    type = Type.new(params.require('type').permit(:name))
+    if type.save
+      redirect_to :back, notice: "Type '#{type.name}' successfully created"
+    else
+      redirect_to :back, alert: get_errors(type)
+    end
   end
 
   def delete_type
     @type = Type.find(params[:id])
-    @type.destroy
-    redirect_to :back
+    if @type.adverts.empty?
+      @type.destroy
+      redirect_to :back, notice: "Type '#{@type.name}' was successfully deleted"
+    else
+      redirect_to :root_path, alert: "Type '#{@type.name}' wasn't deleted"
+    end
   end
 
   private

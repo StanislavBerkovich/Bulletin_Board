@@ -65,7 +65,27 @@
 <div class="container">
   <div class="row">
     <div class="span9">
-      <%= bootstrap_flash %>
+      <% if alert %>
+          <div class="alert alert-error alert-block">
+            <ul>
+
+              <% if alert.is_a? Array %>
+                  <% alert.each do |a| %>
+                      <li><%= a %></li>
+                  <% end %>
+              <% else %>
+                  <li><%= alert %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <% if notice %>
+          <div class="alert alert-block">
+            <ul>
+              <li> <%= notice %></li>
+            </ul>
+          </div>
+      <% end %>
       <%= yield %>
     </div>
     <div class="span3">

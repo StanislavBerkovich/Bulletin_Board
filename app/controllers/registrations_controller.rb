@@ -5,8 +5,12 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def create
-    user = User.create(sign_up_params)
-    redirect_to new_user_session_path
+    @user = User.new(sign_up_params)
+    if @user.save
+      redirect_to new_user_session_path, notice: "Welcome! You successfully sign up"
+    else
+      redirect_to new_user_registration_path, alert: get_errors(@user)
+    end
   end
 
   def update

@@ -15,8 +15,4 @@ class User < ActiveRecord::Base
     self.role.to_s == request_role.to_s
   end
 
-  def role= role
-    role.users << self
-  end
-
 end
