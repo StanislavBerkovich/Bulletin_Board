@@ -33,6 +33,7 @@ class AdvertsController < ApplicationController
   # POST /adverts
   # POST /adverts.json
   def create
+    @types = Type.pluck(:name).sort
     @advert = Advert.new(advert_params)
     @advert.user = current_user
     @advert.state = :new
@@ -51,6 +52,7 @@ class AdvertsController < ApplicationController
   # PATCH/PUT /adverts/1
   # PATCH/PUT /adverts/1.json
   def update
+    @types = Type.pluck(:name).sort
     @advert.state = :new
     @advert.reject_reason = nil
     respond_to do |format|
