@@ -9,6 +9,19 @@
       <%= f.select :type, @types %>
     </div>
 
+    <% unless @advert.pictures.empty? %>
+        <div>
+          <label>Pictures:</label>
+
+          <div>
+            <% @advert.pictures.each do |p| %>
+                <%= image_tag p.url(:small) %>
+            <% end %>
+          </div>
+        </div>
+    <% end %>
+
+
     <div class="form-inputs">
       <%= f.label "Choose images" %>
       <%= f.file_field('advert_pictures_image', multiple: true, name: "advert[pictures_attributes][][image]") %>

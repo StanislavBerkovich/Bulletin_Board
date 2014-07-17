@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   delete 'admin_job/delete_type'
   put 'admin_job/create_type'
   get 'admin_job/reject_reason'
-  post 'admin_job/rejected'
+  put 'admin_job/rejected'
 
   resources :adverts
 
