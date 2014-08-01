@@ -14,27 +14,27 @@
 ActiveRecord::Schema.define(version: 20140707184700) do
 
   create_table "adverts", force: true do |t|
-    t.integer "user_id"
-    t.text "body"
+    t.integer  "user_id"
+    t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "state"
-    t.integer "type_id"
-    t.string "reject_reason"
+    t.string   "state"
+    t.integer  "type_id"
+    t.string   "reject_reason"
   end
 
   create_table "pictures", force: true do |t|
-    t.integer "advert_id"
+    t.integer  "advert_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string "image_file_name"
-    t.string "image_content_type"
-    t.integer "image_file_size"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
     t.datetime "image_updated_at"
   end
 
   create_table "roles", force: true do |t|
-    t.string "name"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20140707184700) do
   add_index "roles", ["name"], name: "index_roles_on_name", unique: true
 
   create_table "types", force: true do |t|
-    t.string "name", null: false
+    t.string   "name",       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -50,21 +50,21 @@ ActiveRecord::Schema.define(version: 20140707184700) do
   add_index "types", ["name"], name: "index_types_on_name", unique: true
 
   create_table "users", force: true do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
-    t.string "name"
-    t.string "surname"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "name"
+    t.string   "surname"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer "role_id"
+    t.integer  "role_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
