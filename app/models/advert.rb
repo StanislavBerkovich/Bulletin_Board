@@ -1,4 +1,5 @@
 class Advert < ActiveRecord::Base
+
   validates :body, presence: true, length: {minimum: 1}
   validates :type, presence: true
   validates :user, presence: true
