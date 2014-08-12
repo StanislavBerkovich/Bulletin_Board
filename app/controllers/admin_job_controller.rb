@@ -2,10 +2,6 @@ class AdminJobController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_advert, only: [:approve, :rejected, :reject_reason]
 
-  rescue_from SQLite3::ConstraintException do |exception|
-    flash[:alert] = "Access denied."
-    redirect_to :back
-  end
 
   def nonpublished
     @adverts = Advert.where(state: :new).page(params[:page]).per(5)
