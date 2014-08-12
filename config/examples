@@ -1,0 +1,28 @@
+You must enter your data for the database in file config/database.yml:
+
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: appname_development
+  pool: 5
+  timeout: 5000
+  username: <user_name>
+  password: <password>
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: appname_test
+  pool: 5
+  timeout: 5000
+  username: <user_name>
+  password: <password>
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: appname_test
+  pool: 5
+  timeout: 5000
+  username: <user_name>
+  password: <password>
