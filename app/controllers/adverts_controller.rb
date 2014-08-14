@@ -42,11 +42,6 @@ class AdvertsController < ApplicationController
         format.html { redirect_to @advert, notice: 'Advert was successfully created.' }
         format.json { render :show, status: :created, location: @advert }
       else
-        10.times {puts "#############################################"}
-        5.times {puts}
-        puts get_errors(@advert)
-        5.times {puts}
-        10.times {puts "#############################################"}
         format.html { render :new, alert: get_errors(@advert) }
         format.json { render json: @advert.errors, status: :unprocessable_entity }
       end
