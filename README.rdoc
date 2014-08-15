@@ -1,6 +1,6 @@
 == README
 Перед запуском выполнить
-whenever --update-crontab board - для запуска автоматических действий
+rake auto_actions:start - для запуска автоматических действий
 
 В базе данных при миграции будет внесен первый админ:
 login: admin@admin.admin
