@@ -1,4 +1,5 @@
 class AdminJobController < ApplicationController
+
   before_filter :authenticate_user!
   before_action :set_advert, only: [:approve, :rejected, :reject_reason]
 
