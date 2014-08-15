@@ -1,11 +1,10 @@
 class Advert < ActiveRecord::Base
+  extend Enumerize
 
   validates :body, presence: true, length: {minimum: 1}
   validates :type, presence: true
   validates :user, presence: true
   validates :state, presence: true
-
-  extend Enumerize
 
   belongs_to :user
   belongs_to :type

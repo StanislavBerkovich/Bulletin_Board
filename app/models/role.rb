@@ -1,6 +1,6 @@
 class Role < ActiveRecord::Base
   validates :name, presence: true, length: {minimum: 1}, uniqueness: true
-  has_many :users
+  has_many :users, dependent: :destroy
 
   def self.admin_role
     Role.find_by(name: 'admin')
