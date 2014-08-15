@@ -39,7 +39,7 @@ class Advert < ActiveRecord::Base
   end
 
   def self.send_in_archive
-    adverts = Advert.where('updated_at <= ? AND state == ?', 3.days.ago, 'published')
+    adverts = Advert.where('updated_at <= ? AND state = ?', 3.days.ago, 'published')
     adverts.each { |advert| advert.update(state: :archives) }
   end
 
