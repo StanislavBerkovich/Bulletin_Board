@@ -12,6 +12,8 @@ class AdminJobController < ApplicationController
     @advert.state = :approved
     respond_to do |format|
       if @advert.save
+        AdvertsMailer.advert_approve_email(@advert).deliver
+
         format.html { redirect_to :back, notice: 'Advert was successfully approved.' }
       else
         format.html { redirect_to :back, alert: 'Something went wrong!' }
@@ -24,7 +26,10 @@ class AdminJobController < ApplicationController
 
   def approve_all
     @adverts = Advert.where(state: :new)
-    @adverts.each { |advert| advert.update(state: :approved) }
+    @adverts.each do    |advert|
+      advert.update(state: :approved)
+      AdvertsMailer.advert_approve_email(@advert).deliver
+    end
     respond_to do |format|
       format.html { redirect_to :back, notice: 'All new adverts were successfully approved.' }
     end
@@ -35,6 +40,7 @@ class AdminJobController < ApplicationController
     @advert.reject_reason = "because #{params['advert'][:reject_reason].downcase}"
     respond_to do |format|
       if @advert.save
+        AdvertsMailer.advert_reject_email(@advert).deliver
         format.html { redirect_to admin_job_nonpublished_path, notice: 'Advert was successfully rejected.' }
       else
         format.html { redirect_to admin_job_nonpublished_path, alert: 'Something went wrong!' }
