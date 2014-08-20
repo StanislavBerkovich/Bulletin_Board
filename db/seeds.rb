@@ -5,7 +5,15 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+[User.all, Role.all, Type.all].flatten.each do |i|
+  i.destroy!
+end
 
+
+roles = ['admin', 'user']
+roles.each do |role|
+  Role.create name: role
+end
 types = ['others', 'cars', 'realty']
 states = [:draft, :new, :rejected, :approved, :published, :archives]
 types.each do |t|

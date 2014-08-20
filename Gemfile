@@ -59,3 +59,9 @@ gem 'paperclip'
 
 gem "rspec-rails", :group => [:test, :development]
 gem "faker", :group => [:test, :development]
+
+
+group :development do
+  gem "better_errors"
+  gem 'hirb'
+end
