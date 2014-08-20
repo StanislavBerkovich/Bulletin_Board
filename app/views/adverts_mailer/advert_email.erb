@@ -6,8 +6,14 @@
 <body>
 <h1>Hello, <%= @advert.user.name.capitalize %></h1>
 
+<p><b>
+  Your advert <%= @state %>:
+</b></p>
+
 <p>
-  Your advert rejected, because <%= @advert.reject_reason %> : <%= link_to @advert %>
+  <%= link_to @advert.body, advert_url(@advert) %>
 </p>
+
+
 </body>
 </html>
