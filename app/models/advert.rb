@@ -30,9 +30,10 @@ class Advert < ActiveRecord::Base
 
   def self.full_text_search(params)
     adverts = tire.search(load: true) do
-      query { string params[:query]} if params[:query].present?
+      query { string params[:query] } if params[:query].present?
     end
-    adverts.select {|a| a.state_is? :published}
+    adverts.select { |a| a.state_is? :published }
+
   end
 
   #For cron
