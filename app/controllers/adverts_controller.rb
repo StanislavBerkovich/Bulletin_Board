@@ -1,5 +1,4 @@
 class AdvertsController < ApplicationController
-  load_and_authorize_resource
 
   before_filter :authenticate_user!, except: [:show, :index]
   before_action :set_advert, only: [:show, :edit, :update, :destroy]
@@ -74,6 +73,11 @@ class AdvertsController < ApplicationController
       format.html { redirect_to :back, notice: 'Advert was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def search
+    @query_text = params[:query] || ''
+    @adverts = Advert.full_text_search(params)
   end
 
   private

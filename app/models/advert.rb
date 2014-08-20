@@ -1,6 +1,10 @@
 class Advert < ActiveRecord::Base
   extend Enumerize
 
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
+
+
   validates :body, presence: true, length: {minimum: 1}
   validates :type, presence: true
   validates :user, presence: true
@@ -22,6 +26,12 @@ class Advert < ActiveRecord::Base
 
   def self.count_of author
     Advert.where(user: author).count
+  end
+
+  def self.full_text_search(params)
+    tire.search(load: true) do
+      query { string params[:query]} if params[:query].present?
+    end
   end
 
 

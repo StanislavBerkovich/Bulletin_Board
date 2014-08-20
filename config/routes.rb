@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   get     'admin_job/reject_reason'
   put     'admin_job/rejected'
 
-  resources :adverts
+  resources :adverts do
+    get 'search', on: :collection
+  end
 
   devise_for :users, :controllers => {:registrations => "registrations"}
 
