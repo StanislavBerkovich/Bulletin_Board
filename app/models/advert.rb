@@ -29,14 +29,13 @@ class Advert < ActiveRecord::Base
   end
 
   def self.full_text_search(params)
-    tire.search(load: true) do
+    adverts = tire.search(load: true) do
       query { string params[:query]} if params[:query].present?
     end
+    adverts.select {|a| a.state_is? :published}
   end
 
-
   #For cron
-
 
   def self.destroy_old
     adverts = Advert.where('updated_at <= ?', 6.months.ago)
