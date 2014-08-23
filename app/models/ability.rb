@@ -22,6 +22,10 @@ class Ability
   def user_ability(user)
     can :read, :all
     can :create, Advert
+    can :destroy, User do |u|
+      user == u
+
+    end
     can :update, Advert do |advert|
       [:draft, :archives, :rejected].include?(advert.try(:state).try(:to_sym)) && advert.try(:user) == user
     end

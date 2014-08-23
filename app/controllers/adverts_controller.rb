@@ -39,10 +39,11 @@ class AdvertsController < ApplicationController
     @advert.state = :new
     respond_to do |format|
       if @advert.save
-        format.html { redirect_to @advert, notice: 'Advert was successfully created.' }
+        format.html { redirect_to @advert, notice: t('.advert_create_successfully') }
         format.json { render :show, status: :created, location: @advert }
       else
-        format.html { render :new, alert: get_errors(@advert) }
+        flash[:alert] = get_errors(@advert)
+        format.html { render :new }
         format.json { render json: @advert.errors, status: :unprocessable_entity }
       end
     end
@@ -79,6 +80,11 @@ class AdvertsController < ApplicationController
     @query_text = params[:query] || ''
     @adverts = Advert.full_text_search(params)
   end
+
+  def personal_locale
+    redirect_to root_path(locale: params[:set_locale])
+  end
+
 
   private
   # Use callbacks to share common setup or constraints between actions.

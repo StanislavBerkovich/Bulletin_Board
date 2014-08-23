@@ -7,6 +7,9 @@ en:
       my_profile: "My profile"
 
     user_panel:
+      hi: "Hello"
+      you_are_guest:  "You are Guest"
+      your_ability:  "Your ability"
       logout: "Log out"
       login: "Log in"
       registration: "Registration"
@@ -20,7 +23,6 @@ en:
 
     index:
       no_adverts: "No adverts"
-      adverts: "Adverts"
 
     new:
       new: "New"
@@ -30,6 +32,9 @@ en:
 
     edit:
        editing_advert: "Editing advert"
+
+    create:
+      advert_create_successfully: "Advert was successfully created."
 
   advert:
     one: "advert"
@@ -54,6 +59,13 @@ en:
       published: "published"
       archives: "archives"
 
+  persons:
+
+    profile:
+      edit: "Edit"
+      count_of: "Count of"
+      delete: "Delete"
+
 
   user:
     one:  "User"
@@ -61,7 +73,7 @@ en:
 
 
   views:
-    сreate: "Create"
+    create: "Create"
     because: "because"
     back: "Back"
     search: "Search"

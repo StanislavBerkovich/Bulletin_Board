@@ -18,6 +18,7 @@ class PersonsController < ApplicationController
     end
   end
 
+
   def delete
     @person.destroy
     redirect_to root_path, notice: "User #{@person.email} was successfully deleted"

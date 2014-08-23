@@ -53,7 +53,7 @@ gem 'devise'
 
 gem 'whenever'
 
-gem 'cancancan'
+gem 'cancan'
 
 gem 'paperclip'
 
@@ -63,3 +63,6 @@ gem "faker", :group => [:test, :development]
 gem 'tire'
 
 gem 'unicode'
+
+gem 'devise-russian'
+

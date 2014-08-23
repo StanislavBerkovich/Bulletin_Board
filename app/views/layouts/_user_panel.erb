@@ -1,22 +1,18 @@
 <div class="well sidebar-nav">
   <ul class="nav nav-list">
     <% if user_signed_in? %>
-        <li><p>Hi, <%= full_name current_user %></p></li>
+        <li><p><%= t '.hi' %>, <%= full_name current_user %></p></li>
         <li>  <%= button_to t('.logout'), destroy_user_session_path, :method => :delete, class: 'btn btn-warning btn-block' %></li>
     <% else %>
-        <li><p>You are Guest</p></li>
+        <li><p><%= t'.you_are_guest' %></p></li>
         <li> <%= button_to t('.login'), new_user_session_path, method: :get, class: 'btn btn-primary btn-block' %></li>
         <li> <%= button_to t('.registration'), new_user_registration_path, method: :get, class: 'btn btn-block' %></li>
     <% end %>
     <% if user_signed_in? %>
-        <ul class="nav nav-header">Your Ability</ul>
+        <ul class="nav nav-header"><%= t('.your_ability') %></ul>
 
         <% if can? :create, Advert %>
             <li><%= button_to t(".new_advert"), new_advert_path, method: :get, class: 'btn btn-success btn-block' %></li>
-        <% end %>
-
-        <% if can? :edit, current_user %>
-            <li><%= button_to t(".edit_my_profile"), edit_user_registration_path(current_user), method: :get, class: 'btn btn-warning btn-block' %></li>
         <% end %>
 
         <% if can? :create, User %>

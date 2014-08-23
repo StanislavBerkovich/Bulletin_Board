@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
     resources :adverts do
       get 'search', on: :collection
+      post 'personal_locale', on: :collection, as: 'locale'
+
     end
 
     devise_for :users, :controllers => {:registrations => "registrations"}
@@ -24,7 +26,7 @@ Rails.application.routes.draw do
     get 'persons/edit'
     get 'persons/new'
     put 'persons/save_changes'
-    delete 'persons/delete'
+     delete 'persons/delete'
   end
 
 

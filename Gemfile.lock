@@ -31,7 +31,7 @@ GEM
     arel (5.0.1.20140414130214)
     bcrypt (3.1.7)
     builder (3.2.2)
-    cancancan (1.9.2)
+    cancan (1.6.10)
     chronic (0.10.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -50,6 +50,8 @@ GEM
       railties (>= 3.2.6, < 5)
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    devise-russian (2.0.1.1)
+      devise
     diff-lcs (1.2.5)
     enumerize (0.8.0)
       activesupport (>= 3.2)
@@ -193,9 +195,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  cancancan
+  cancan
   coffee-rails (~> 4.0.0)
   devise
+  devise-russian
   enumerize
   faker
   jbuilder (~> 2.0)
