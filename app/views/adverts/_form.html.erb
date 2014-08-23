@@ -1,17 +1,18 @@
 <%= simple_form_for(@advert) do |f| %>
 
     <div class="form-inputs">
-      <%= f.input :body %>
+      <%= f.label t('advert.fields.body') %>
+      <%= f.text_area :body %>
     </div>
 
     <div class="form-inputs">
-      <%= f.label "Type of advert" %>
+      <%= f.label t('advert.fields.type') %>
       <%= f.select :type, @types %>
     </div>
 
     <% unless @advert.pictures.empty? %>
         <div>
-          <label>Pictures:</label>
+          <label><%= t('advert.fields.pictures') %></label>
 
           <div>
             <% @advert.pictures.each do |p| %>
@@ -23,12 +24,12 @@
 
 
     <div class="form-inputs">
-      <%= f.label "Choose images" %>
-      <%= f.file_field('advert_pictures_image', multiple: true, name: "advert[pictures_attributes][][image]") %>
+      <%= f.label "#{t('.choose')} #{t('advert.fields.pictures')}" %>
+      <%= f.file_field 'advert_pictures_image', multiple: true, name: "advert[pictures_attributes][][image]"  %>
     </div>
 
     <div class="form-actions">
-      <%= f.button :submit %>
+      <%= f.button :submit, value: "#{t 'views.create'} #{t 'advert', count: 1}"%>
     </div>
 
 <% end %>

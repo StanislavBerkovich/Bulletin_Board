@@ -1,10 +1,10 @@
 <p>
-  <strong>Body:</strong>
+  <strong><%= t('advert.fields.body') %>:</strong>
   <%= @advert.body %>
 </p>
 
 <p>
-  <strong>Author:</strong>
+  <strong><%= t('advert.fields.author') %>:</strong>
   <% if can? :read, @advert.user %>
       <%= link_to full_name(@advert.user), persons_profile_path(id: @advert.user) %>
   <% else %>
@@ -13,12 +13,12 @@
 </p>
 
 <p>
-  <strong>Type:</strong>
+  <strong><%= t('advert.fields.type') %>:</strong>
   <%= @advert.type %>
 </p>
 
 <% unless @advert.pictures.empty? %>
-    <label>Pictures:</label>
+    <label><%= t('advert.fields.pictures') %>:</label>
 
     <div>
       <% @advert.pictures.each do |p| %>
@@ -27,12 +27,19 @@
     </div>
 <% end %>
 
-<% if can?(:manage, @advert) and @advert.state_is?(:new) %>
-    <%= link_to 'Publish advert'.html_safe, admin_job_publish_path(advert: @advert),
+<% if can?(:approve, @advert) %>
+    <%= link_to t('advert.actions.approve'), admin_job_approve_path(id: @advert),
                 method: :post, class: 'btn btn-success pull-right' %>
-    <%= link_to 'Rejected advert'.html_safe, admin_job_rejected_path(advert: @advert),
-                method: :post, class: 'btn btn-danger pull-right' %>
+
+<% end %>
+<% if can?(:reject, @advert) %>
+    <%= link_to t('advert.actions.reject'), admin_job_reject_reason_path(id: @advert),
+                class: 'btn btn-danger pull-right' %>
+<% end %>
+<% if can? :update, @advert %>
+    <%= link_to t('advert.actions.update'), edit_advert_path(@advert), class: 'btn btn-default' %>
 <% end %>
 
 
-<%= link_to 'Back', :back, class: 'btn btn' %>
+
+<%= link_to t('views.back'), :back, class: 'btn btn' %>

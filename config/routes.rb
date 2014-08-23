@@ -1,27 +1,32 @@
 Rails.application.routes.draw do
-  root    'adverts#index'
 
-  get     'admin_job/nonpublished'
-  get     'admin_job/manage_advert_type'
-  post    'admin_job/approve'
-  post    'admin_job/approve_all'
-  delete  'admin_job/delete_type'
-  put     'admin_job/create_type'
-  get     'admin_job/reject_reason'
-  put     'admin_job/rejected'
+  scope '(:locale)' do
 
-  resources :adverts do
-    get 'search', on: :collection
+    root 'adverts#index'
+
+    get 'admin_job/nonpublished'
+    get 'admin_job/manage_advert_type'
+    post 'admin_job/approve'
+    post 'admin_job/approve_all'
+    delete 'admin_job/delete_type'
+    put 'admin_job/create_type'
+    get 'admin_job/reject_reason'
+    put 'admin_job/rejected'
+
+    resources :adverts do
+      get 'search', on: :collection
+    end
+
+    devise_for :users, :controllers => {:registrations => "registrations"}
+
+    get 'persons/profile'
+    get 'persons/index'
+    get 'persons/edit'
+    get 'persons/new'
+    put 'persons/save_changes'
+    delete 'persons/delete'
   end
 
-  devise_for :users, :controllers => {:registrations => "registrations"}
-
-  get     'persons/profile'
-  get     'persons/index'
-  get     'persons/edit'
-  get     'persons/new'
-  put     'persons/save_changes'
-  delete  'persons/delete'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -36,7 +36,7 @@ class AdminJobController < ApplicationController
 
   def rejected
     @advert.state = :rejected
-    @advert.reject_reason = "because #{params['advert'][:reject_reason].downcase}"
+    @advert.reject_reason = Unicode::downcase params['advert'][:reject_reason]
     respond_to do |format|
       if @advert.save
         AdvertsMailer.advert_email(@advert, :rejected).deliver

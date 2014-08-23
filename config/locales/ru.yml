@@ -1,0 +1,72 @@
+ru:
+  layouts:
+
+    application:
+      site_name: "Доска объявлений"
+      all_users: "Все пользователи"
+      my_profile: "Моя страница"
+
+    user_panel:
+      logout: "Выйти"
+      login: "Войти"
+      registration: "Регистрация"
+      new_advert: "Новое объявление"
+      edit_my_profile: "Редактировать мои данные"
+      create_new_user: "Создать нового пользователя"
+      approve_new_adverts: "Одобрить новые объявления"
+      manage_type: "Управление типами объявлений"
+
+  adverts:
+
+    index:
+      no_adverts: "Нет объявления"
+      adverts: "Объявления"
+
+    new:
+      new: "Hoвое"
+    form:
+      choose: "Выберите"
+    edit:
+      editing_advert: "Редактирование объявления"
+
+  advert:
+    one: "объявление"
+    other: "объявления"
+
+    actions:
+      approve: "Опубликовать"
+      reject: "Отклонить"
+      update: "Обновить"
+      show: "Показать"
+    fields:
+      body: "Текст"
+      author: "Автор"
+      type: "Тип"
+      pictures: "Фото"
+      updated_at: "Дата обновления"
+    states:
+      draft: "черновик"
+      new: "новое"
+      rejected: "отклонено"
+      approved: "одобрено"
+      published: "опубликовано"
+      archives: "архивное"
+
+  user:
+    one:  "Пользоватьель"
+    other: "Пользователи"
+
+  views:
+    create: "Cоздать"
+    because: "т.к."
+    back: "Назад"
+    search: "Поиск"
+    sort_by: "Cортировать по"
+    contains: "содержит"
+
+    pagination:
+      first: "Первая"
+      last: "Последняя"
+      previous: "&lt; Предыдущая"
+      next: "Следующая &gt;"
+      truncate: "..."

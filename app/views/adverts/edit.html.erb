@@ -1,6 +1,5 @@
-<h1>Editing advert</h1>
+<h1><%= t('.editing_advert') %></h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @advert %> |
-<%= link_to 'Back', adverts_path %>
+<%= link_to t('views.back'), adverts_path, class: 'btn btn' %>

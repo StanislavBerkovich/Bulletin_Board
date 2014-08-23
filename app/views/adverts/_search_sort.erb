@@ -1,17 +1,17 @@
-<h3>Search:</h3>
+<h3><%= t 'views.search' %>:</h3>
 <%= search_form_for @search do |f| %>
     <div class="field">
-      <%= f.label :body_cont, "Body contains" %>
+      <%= f.label :body_cont, "#{t 'advert.fields.body'} #{t 'views.contains'}" %>
       <%= f.search_field :body_cont %>
-      <%= f.label :type_name_cont, "Type contains" %>
+      <%= f.label :type_name_cont, "#{t 'advert.fields.type'} #{t 'views.contains'}" %>
       <%= f.search_field :type_name_cont %>
     </div>
-    <div class="actions"><%= f.submit "Search", class: 'btn' %></div>
+    <div class="actions"><%= f.submit t('views.search'), class: 'btn' %></div>
 <% end %>
 
-<h3>Sort by:</h3>
+<h3><%= t('views.sort_by') %>:</h3>
 <div class='btn-group'>
-  <button class='btn'> <%= sort_link @search, :updated_at %></button>
-  <button class='btn'> <%= sort_link @search, 'type_id', 'Type', class: 'btn' %></button>
-  <button class='btn'> <%= sort_link @search, 'user_id', 'User', class: 'btn' %></button>
+  <button class='btn'> <%= sort_link @search, :updated_at, t('advert.fields.updated_at') %></button>
+  <button class='btn'> <%= sort_link @search, 'type_name', t('advert.fields.type'), class: 'btn' %></button>
+  <button class='btn'> <%= sort_link @search, 'user_name', t('user', count: 1), class: 'btn' %></button>
 </div>

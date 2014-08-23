@@ -11,7 +11,7 @@
 </b></p>
 
 <p>
-  <%= link_to @advert.body, advert_url(@advert) %>
+  <%= link_to(@advert.body, advert_url(locale: I18n.locale, id: @advert)) %>
 </p>
 
 

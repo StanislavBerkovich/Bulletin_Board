@@ -37,7 +37,7 @@ gem 'spring', group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem "twitter-bootstrap-rails"
+gem "twitter-bootstrap-rails", '2.2.8'
 
 gem 'enumerize'
 
@@ -62,8 +62,4 @@ gem "faker", :group => [:test, :development]
 
 gem 'tire'
 
-
-group :development do
-  gem "better_errors"
-  gem 'hirb'
-end
+gem 'unicode'

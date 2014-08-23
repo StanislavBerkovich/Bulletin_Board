@@ -1,29 +1,75 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  layouts:
+
+    application:
+      site_name: "Bulletin Board"
+      all_users: "All users"
+      my_profile: "My profile"
+
+    user_panel:
+      logout: "Log out"
+      login: "Log in"
+      registration: "Registration"
+      new_advert: "New advert"
+      edit_my_profile: "Edit my profile"
+      create_new_user: "Create new user"
+      approve_new_adverts: "Approve new adverts"
+      manage_type: "Manage types of adverts"
+
+  adverts:
+
+    index:
+      no_adverts: "No adverts"
+      adverts: "Adverts"
+
+    new:
+      new: "New"
+
+    form:
+      choose: "Choose"
+
+    edit:
+       editing_advert: "Editing advert"
+
+  advert:
+    one: "advert"
+    other: "adverts"
+
+    actions:
+      aprove: "Approve"
+      reject: "Reject"
+      update: "Update"
+      show: "Show"
+    fields:
+      body: "Body"
+      author: "Author"
+      type: "Type"
+      pictures: "Pictures"
+      updated_at: "Updated at"
+    states:
+      draft: "draft"
+      new: "new"
+      rejected: "rejected"
+      approved: "approved"
+      published: "published"
+      archives: "archives"
+
+
+  user:
+    one:  "User"
+    other: "Users"
+
+
   views:
+    сreate: "Create"
+    because: "because"
+    back: "Back"
+    search: "Search"
+    sort_by: "Sort by"
+    contains: "contains"
 
     pagination:
       previous: "&lt; Previous"
       next: "Next &gt;"
       truncate: "..."
+

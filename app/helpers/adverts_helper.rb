@@ -15,7 +15,11 @@ module AdvertsHelper
       when :rejected
         html << '-important'
     end
-    html << "'>#{state.capitalize} #{advert.reject_reason}</span>"
+    html << "'>#{cap I18n.t("advert.states.#{state}")}"
+    if state == :rejected
+      html << " #{I18n.t('views.because')} #{advert.reject_reason}"
+    end
+    html << "</span>"
     html.html_safe
   end
 end
