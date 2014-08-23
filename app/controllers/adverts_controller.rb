@@ -1,6 +1,6 @@
 class AdvertsController < ApplicationController
 
-  before_filter :authenticate_user!, except: [:show, :index]
+  before_filter :authenticate_user!, except: [:show, :index, :personal_locale]
   before_action :set_advert, only: [:show, :edit, :update, :destroy]
 
   # GET /adverts

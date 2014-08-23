@@ -17,6 +17,7 @@ class Ability
     can :read, Advert do |advert|
       advert.try(:state_is?, :published)
     end
+    can :personal_locale, Advert
   end
 
   def user_ability(user)
