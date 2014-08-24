@@ -1,7 +1,7 @@
 class AdvertsController < ApplicationController
 
   before_filter :authenticate_user!, except: [:show, :index, :personal_locale]
-  before_action :set_advert, only: [:show, :edit, :update, :destroy]
+  before_action :set_advert, only: [:show, :edit, :update, :destroy, :approve, :rejected, :reject_reason]
 
   # GET /adverts
   # GET /adverts.json
@@ -9,6 +9,7 @@ class AdvertsController < ApplicationController
     @search = Advert.search(params[:q])
     @adverts = @search.result.includes(:type, :user).where(state: :published).page(params[:page]).per(5)
   end
+
 
   # GET /adverts/1
   # GET /adverts/1.json
@@ -72,6 +73,34 @@ class AdvertsController < ApplicationController
     end
   end
 
+  def nonpublished
+    @adverts = Advert.get_nonpublished_for_page params[:page]
+  end
+
+  def approve
+    change_state :approved
+  end
+
+
+  def reject_reason
+  end
+
+  def approve_all
+    @adverts = Advert.get_nonpublished
+    @adverts.each do |advert|
+      advert.update(state: :approved)
+      AdvertsMailer.advert_change_state(advert, :approved).deliver
+    end
+    respond_to do |format|
+      format.html { redirect_to nonpublished_adverts_path, notice: 'All new adverts were successfully approved.' }
+    end
+  end
+
+  def rejected
+    @advert.update_attribute(:reject_reason, Unicode::downcase(params['advert'][:reject_reason]))
+    change_state :rejected
+  end
+
   def search
     unless params[:query].empty?
       @query_text = params[:query]
@@ -99,4 +128,17 @@ class AdvertsController < ApplicationController
     p[:type] = Type.find_by(name: params[:advert][:type])
     p
   end
+
+  def change_state state
+    @advert.update_attribute(:state, state)
+    respond_to do |format|
+      if @advert.save
+        AdvertsMailer.advert_change_state(@advert, state).deliver
+        format.html { redirect_to nonpublished_adverts_path, notice: "Advert was successfully #{state}." }
+      else
+        format.html { redirect_to nonpublished_adverts_path, alert: 'Something went wrong!' }
+      end
+    end
+  end
+
 end

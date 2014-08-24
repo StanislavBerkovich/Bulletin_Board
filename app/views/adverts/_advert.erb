@@ -30,22 +30,5 @@
       </div>
   <% end %>
 
-  <div>
-    <% if can?(:approve, advert) %>
-        <%= link_to t('advert.actions.approve'), admin_job_approve_path(id: advert),
-                    method: :post, class: 'btn btn-success pull-right' %>
-
-    <% end %>
-    <% if can?(:reject, advert) %>
-        <%= link_to t('advert.actions.reject'), admin_job_reject_reason_path(id: advert),
-                    class: 'btn btn-danger pull-right' %>
-    <% end %>
-    <% if can? :update, advert %>
-        <%= link_to t('advert.actions.update'), edit_advert_path(advert), class: 'btn btn-default' %>
-    <% end %>
-
-    <% if can? :read, advert %>
-        <%= link_to t('advert.actions.show'), advert_path(advert), class: 'btn btn-success' %>
-    <% end %>
-  </div>
+  <%= render 'adverts/actions', advert: advert%>
 </div>

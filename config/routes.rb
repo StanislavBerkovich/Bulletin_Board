@@ -4,18 +4,24 @@ Rails.application.routes.draw do
 
     root 'adverts#index'
 
-    get 'admin_job/nonpublished'
     get 'admin_job/manage_advert_type'
-    post 'admin_job/approve'
-    post 'admin_job/approve_all'
     delete 'admin_job/delete_type'
     put 'admin_job/create_type'
-    get 'admin_job/reject_reason'
-    put 'admin_job/rejected'
 
     resources :adverts do
-      get 'search', on: :collection
-      post 'personal_locale', on: :collection, as: 'locale'
+      collection do
+        get 'search'
+        post 'personal_locale', as: 'locale'
+        get 'nonpublished'
+        post 'approve_all'
+      end
+
+      member do
+        post 'approve'
+        get 'reject_reason'
+        put 'rejected'
+      end
+
 
     end
 
@@ -26,7 +32,7 @@ Rails.application.routes.draw do
     get 'persons/edit'
     get 'persons/new'
     put 'persons/save_changes'
-     delete 'persons/delete'
+    delete 'persons/delete'
   end
 
 
