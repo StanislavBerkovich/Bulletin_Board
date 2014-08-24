@@ -14,4 +14,11 @@ namespace :my_gens do
     end
   end
 
+  desc "Delete all adverts"
+  task :delete_adverts => :environment do
+    Advert.all.each do |a|
+      a.destroy
+    end
+  end
+
 end

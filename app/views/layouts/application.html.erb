@@ -53,8 +53,8 @@
           <% if can? :create, User %>
               <li> <%= link_to t('.all_users'), persons_index_path %></li>
           <% end %>
-          <% if  can? :create, Advert %>
-              <li><%= link_to t('.my_profile'), persons_profile_path(id: current_user) %></li>
+          <% if  can? :read, current_user %>
+              <li><%= link_to t('.my_profile'), profile_path(id: current_user) %></li>
           <% end %>
         </ul>
         <%= form_tag locale_adverts_path,  class: 'locale pull-right' do %>

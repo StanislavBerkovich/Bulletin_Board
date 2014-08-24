@@ -16,7 +16,7 @@
         <% end %>
 
         <% if can? :create, User %>
-            <li><%= button_to t('.create_new_user'), persons_new_path, method: :get, class: 'btn btn-block' %></li>
+            <li><%= button_to t('.create_new_user'), new_person_path, method: :get, class: 'btn btn-block' %></li>
         <% end %>
 
         <% if can? :approve, Advert %>

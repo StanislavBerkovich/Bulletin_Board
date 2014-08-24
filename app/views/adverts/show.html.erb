@@ -6,7 +6,7 @@
 <p>
   <strong><%= t('advert.fields.author') %>:</strong>
   <% if can? :read, @advert.user %>
-      <%= link_to full_name(@advert.user), persons_profile_path(id: @advert.user) %>
+      <%= link_to full_name(@advert.user), profile_path(id: @advert.user) %>
   <% else %>
       <%= full_name @advert.user %>
   <% end %>

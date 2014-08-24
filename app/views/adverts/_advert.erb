@@ -15,7 +15,7 @@
   <label>
     <%= t('advert.fields.author') %>:</label>
   <% if can? :read, advert.user %>
-      <%= link_to full_name(advert.user), persons_profile_path(id: advert.user) %>
+      <%= link_to full_name(advert.user), profile_path(id: advert.user) %>
   <% else %>
       <p><%= full_name advert.user %></p>
   <% end %>

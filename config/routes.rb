@@ -4,10 +4,6 @@ Rails.application.routes.draw do
 
     root 'adverts#index'
 
-    get 'admin_job/manage_advert_type'
-    delete 'admin_job/delete_type'
-    put 'admin_job/create_type'
-
     resources :adverts do
       collection do
         get 'search'
@@ -23,18 +19,18 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :types, only: [:index, :create, :destroy] do
-      get 'manage' => 'type#index'
-    end
+    resources :types, only: [:index, :create, :destroy]
 
     devise_for :users, :controllers => {:registrations => "registrations"}
 
-    get 'persons/profile'
-    get 'persons/index'
-    get 'persons/edit'
-    get 'persons/new'
-    put 'persons/save_changes'
-    delete 'persons/delete'
+    controller :persons do
+      get 'profile'
+      get 'index', as:'persons_index'
+      get 'edit', as: 'edit_person'
+      get 'new', as: 'new_person'
+      put 'save_changes'
+      delete 'delete', as: 'delete_person'
+    end
   end
 
 

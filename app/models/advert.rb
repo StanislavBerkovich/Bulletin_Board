@@ -40,7 +40,7 @@ class Advert < ActiveRecord::Base
   end
 
   def self.get_nonpublished
-    where(state: :new)
+    where(state: :new).order(:updated_at)
   end
 
   #For cron

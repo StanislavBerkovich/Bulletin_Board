@@ -12,7 +12,7 @@ class PersonsController < ApplicationController
 
   def save_changes
     if @person.update person_params
-      redirect_to persons_profile_path(id: @person), notice: "User was successfully updated"
+      redirect_to profile_path(id: @person), notice: "User was successfully updated"
     else
       redirect_to :back, alert: get_errors(@person)
     end

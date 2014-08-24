@@ -1,4 +1,4 @@
-<%= simple_form_for(@person, url: persons_save_changes_path(id: @person), html: {method: :put}) do |f| %>
+<%= simple_form_for(@person, url: save_changes_path(id: @person), html: {method: :put}) do |f| %>
     <%= f.error_notification %>
 
     <div class="form-inputs">
