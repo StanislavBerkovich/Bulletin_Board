@@ -17,26 +17,22 @@ class AdvertsController < ApplicationController
 
   # GET /adverts/new
   def new
-    @advert = Advert.new
-    @advert.state = :draft
-    @types = Type.pluck(:name).sort
+    @advert = Advert.create(state: :draft)
+    @types = Type.get_for_select
   end
 
   # GET /adverts/1/edit
   def edit
-    @advert.state = :draft
-    @types = [@advert.type.name]
-    @types << Type.pluck(:name)
-    @types.flatten!.sort!.uniq!
+    @advert.update_attributes(state: :draft)
+    @types = Type.get_for_select
   end
 
   # POST /adverts
   # POST /adverts.json
   def create
-    @types = Type.pluck(:name).sort
+    @types = Type.get_for_select
     @advert = Advert.new(advert_params)
-    @advert.user = current_user
-    @advert.state = :new
+    @advert.update_attributes(user: current_user, state: :new)
     respond_to do |format|
       if @advert.save
         format.html { redirect_to @advert, notice: t('.advert_create_successfully') }
@@ -52,15 +48,15 @@ class AdvertsController < ApplicationController
   # PATCH/PUT /adverts/1
   # PATCH/PUT /adverts/1.json
   def update
-    @types = Type.pluck(:name).sort
-    @advert.state = :new
-    @advert.reject_reason = nil
+    @types = Type.get_for_select
+    @advert.update_attributes(state: :new, reject_reason: nil)
     respond_to do |format|
       if @advert.update(advert_params)
         format.html { redirect_to @advert, notice: 'Advert was successfully updated.' }
         format.json { render :show, status: :ok, location: @advert }
       else
-        format.html { render :edit, alert: get_errors(@advert) }
+        flash[:alert] = get_errors(@advert)
+        format.html { render :edit }
         format.json { render json: @advert.errors, status: :unprocessable_entity }
       end
     end
@@ -77,8 +73,13 @@ class AdvertsController < ApplicationController
   end
 
   def search
-    @query_text = params[:query] || ''
-    @adverts = Advert.full_text_search(params)
+    unless params[:query].empty?
+      @query_text = params[:query]
+      @adverts = Advert.full_text_search(params)
+    else
+      redirect_to :back, alert: I18n.t('adverts.search.empty')
+    end
+
   end
 
   def personal_locale

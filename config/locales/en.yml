@@ -36,6 +36,9 @@ en:
     create:
       advert_create_successfully: "Advert was successfully created."
 
+    search:
+      empty: "No text in search query"
+
   advert:
     one: "advert"
     other: "adverts"

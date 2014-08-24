@@ -1,7 +1,7 @@
+<%= render 'search_sort' %>
 <% if @adverts.empty? %>
     <h3><%= t('.no_adverts') %> =(</h3>
 <% else %>
-    <%= render 'search_sort' %>
     <h3><%= cap t('advert', count: @adverts.count) %>:</h3>
     <%= render @adverts %>
     <%= paginate @adverts %>

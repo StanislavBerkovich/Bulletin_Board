@@ -5,29 +5,22 @@ class AdminJobController < ApplicationController
 
 
   def nonpublished
-    @adverts = Advert.where(state: :new).page(params[:page]).per(5)
+    @adverts = Advert.get_nonpublished_for_page params[:page]
   end
 
   def approve
-    @advert.state = :approved
-    respond_to do |format|
-      if @advert.save
-        puts AdvertsMailer.advert_email(@advert, :approve).deliver
-        format.html { redirect_to :back, notice: 'Advert was successfully approved.' }
-      else
-        format.html { redirect_to :back, alert: 'Something went wrong!' }
-      end
-    end
+    change_state :approved
   end
+
 
   def reject_reason
   end
 
   def approve_all
-    @adverts = Advert.where(state: :new)
-    @adverts.each do    |advert|
+    @adverts = Advert.get_nonpublished
+    @adverts.each do |advert|
       advert.update(state: :approved)
-      AdvertsMailer.advert_email(@advert).deliver
+      AdvertsMailer.advert_change_state(advert, :approved).deliver
     end
     respond_to do |format|
       format.html { redirect_to :back, notice: 'All new adverts were successfully approved.' }
@@ -35,16 +28,8 @@ class AdminJobController < ApplicationController
   end
 
   def rejected
-    @advert.state = :rejected
-    @advert.reject_reason = Unicode::downcase params['advert'][:reject_reason]
-    respond_to do |format|
-      if @advert.save
-        AdvertsMailer.advert_email(@advert, :rejected).deliver
-        format.html { redirect_to admin_job_nonpublished_path, notice: 'Advert was successfully rejected.' }
-      else
-        format.html { redirect_to admin_job_nonpublished_path, alert: 'Something went wrong!' }
-      end
-    end
+    @advert.update_attribute(:reject_reason, Unicode::downcase(params['advert'][:reject_reason]))
+    change_state :rejected
   end
 
   def manage_advert_type
@@ -77,5 +62,16 @@ class AdminJobController < ApplicationController
     @advert = Advert.find(params[:id])
   end
 
+  def change_state state
+    @advert.update_attribute(:state, state)
+    respond_to do |format|
+      if @advert.save
+        AdvertsMailer.advert_change_state(@advert, state).deliver
+        format.html { redirect_to admin_job_nonpublished_path, notice: "Advert was successfully #{state}." }
+      else
+        format.html { redirect_to admin_job_nonpublished_path, alert: 'Something went wrong!' }
+      end
+    end
+  end
 
 end

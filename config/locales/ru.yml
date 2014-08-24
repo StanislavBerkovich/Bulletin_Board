@@ -22,14 +22,21 @@ ru:
   adverts:
     index:
       no_adverts: "Нет объявлений"
+
     new:
       new: "Hoвое"
+
     form:
       choose: "Выберите"
+
     edit:
       editing_advert: "Редактирование объявления"
+
     create:
       advert_create_successfully: "Объявление создано успешно."
+
+    search:
+      empty: "Нет текста у поискового запроса"
 
   advert:
     one: "объявление"

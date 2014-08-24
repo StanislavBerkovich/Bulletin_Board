@@ -4,6 +4,7 @@
         <%= link_to '&times'.html_safe, advert, method: :delete, class: 'close', rel: "tooltip", title: "Delete", data: {placement: "top"} %>
       </div>
   <% end %>
+  <%= debug advert if Rails.env.development? %>
 
   <%= show_state advert %>
 

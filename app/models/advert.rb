@@ -33,7 +33,14 @@ class Advert < ActiveRecord::Base
       query { string params[:query] } if params[:query].present?
     end
     adverts.select { |a| a.state_is? :published }
+  end
 
+  def self.get_nonpublished_for_page page
+    get_nonpublished.order(:updated_at).page(page).per(5)
+  end
+
+  def self.get_nonpublished
+    where(state: :new)
   end
 
   #For cron

@@ -5,4 +5,8 @@ class Type < ActiveRecord::Base
   def to_s
     self.name
   end
+
+  def self.get_for_select
+    pluck(:name).sort
+  end
 end
