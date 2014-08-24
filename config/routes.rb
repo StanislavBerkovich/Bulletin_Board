@@ -21,8 +21,10 @@ Rails.application.routes.draw do
         get 'reject_reason'
         put 'rejected'
       end
+    end
 
-
+    resources :types, only: [:index, :create, :destroy] do
+      get 'manage' => 'type#index'
     end
 
     devise_for :users, :controllers => {:registrations => "registrations"}

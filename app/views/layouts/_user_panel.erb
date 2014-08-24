@@ -23,7 +23,7 @@
             <li><%= button_to t('.approve_new_adverts'), nonpublished_adverts_path, method: :get, class: 'btn btn-block' %></li>
         <% end %>
         <% if can? :create, Type %>
-            <li><%= button_to t('.manage_type'), admin_job_manage_advert_type_path, method: :get, class: 'btn btn-block' %></li>
+            <li><%= button_to t('.manage_type'), types_path, method: :get, class: 'btn btn-block' %></li>
         <% end %>
 
     <% end %>

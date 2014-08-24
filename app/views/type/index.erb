@@ -4,7 +4,7 @@
       <li>
         <%= type %>
         <% if can? :destroy, type %>
-            <%= link_to 'Delete', admin_job_delete_type_path(id: type), method: :delete, class: 'btn btn-danger' %>
+            <%= link_to 'Delete', type, method: :delete, class: 'btn btn-danger' %>
         <% end %>
       </li>
   <% end %>
@@ -12,7 +12,7 @@
 
 <h3>New type</h3>
 
-<%= simple_form_for(@type, url: admin_job_create_type_path, html: {method: :put}) do |f| %>
+<%= simple_form_for @type do |f| %>
 
     <div class="form-inputs">
       <%= f.input :name, required: true, autofocus: true %>

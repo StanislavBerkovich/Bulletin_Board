@@ -1,5 +1,5 @@
 class PersonsController < ApplicationController
-  before_filter :authenticate_user!
+
   before_action :set_person, only: [:edit, :profile, :save_changes, :delete]
 
   def profile

@@ -1,17 +1,14 @@
-class AdminJobController < ApplicationController
+class TypesController < ApplicationController
+  # GET /types
 
   before_filter :authenticate_user!
-  before_action :set_advert, only: [:approve, :rejected, :reject_reason]
 
-
-
-
-  def manage_advert_type
+  def index
     @type = Type.new
     @types = Type.all.sort_by { |t| t.name }
   end
 
-  def create_type
+  def create
     type = Type.new(params.require('type').permit(:name))
     if type.save
       redirect_to :back, notice: "Type '#{type.name}' successfully created"
@@ -20,21 +17,14 @@ class AdminJobController < ApplicationController
     end
   end
 
-  def delete_type
+  def destroy
     @type = Type.find(params[:id])
     if @type.adverts.empty?
       @type.destroy
       redirect_to :back, notice: "Type '#{@type.name}' was successfully deleted"
     else
-      redirect_to :root_path, alert: "Type '#{@type.name}' wasn't deleted"
+      redirect_to :back, alert: "Type '#{@type.name}' wasn't deleted, because it has adverts"
     end
   end
-
-  private
-
-  def set_advert
-    @advert = Advert.find(params[:id])
-  end
-
 
 end
