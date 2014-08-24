@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  default_scope -> { order('surname DESC') }
+  scope :admins, -> { where role_id: Role.admin_role.id }
+  scope :users, -> { where role_id: Role.user_role.id }
+
   validates :email, uniqueness: true, presence: true
   validates :name, presence: true
   validates :surname, presence: true

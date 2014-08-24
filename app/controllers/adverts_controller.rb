@@ -1,14 +1,16 @@
 class AdvertsController < ApplicationController
+
   load_and_authorize_resource
   skip_load_resource :only => [:create]
+
   before_filter :authenticate_user!, except: [:show, :index, :personal_locale, :search]
   before_action :set_advert, only: [:show, :edit, :update, :destroy, :approve, :reject, :reject_reason]
 
   # GET /adverts
   # GET /adverts.json
   def index
-    @search = Advert.search(params[:q])
-    @adverts = @search.result.includes(:type, :user).where(state: :published).page(params[:page]).per(5)
+    @search = Advert.published.search(params[:q])
+    @adverts = @search.result.includes(:type, :user).page(params[:page]).per(5)
   end
 
 
@@ -75,7 +77,7 @@ class AdvertsController < ApplicationController
   end
 
   def nonpublished
-    @adverts = Advert.get_nonpublished_for_page params[:page]
+    @adverts = Advert.nonpublished.page(params[:page]).per(5)
   end
 
   def approve
@@ -87,7 +89,7 @@ class AdvertsController < ApplicationController
   end
 
   def approve_all
-    @adverts = Advert.get_nonpublished
+    @adverts = Advert.nonpublished
     @adverts.each do |advert|
       advert.update(state: :approved)
       AdvertsMailer.advert_change_state(advert, :approved).deliver

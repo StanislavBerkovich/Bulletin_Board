@@ -4,6 +4,9 @@ class Advert < ActiveRecord::Base
   include Tire::Model::Search
   include Tire::Model::Callbacks
 
+  default_scope -> { order('updated_at DESC') }
+  scope :nonpublished, -> { where state: :new }
+  scope :published, -> { where state: :published }
 
   validates :body, presence: true, length: {minimum: 1}
   validates :type, presence: true
@@ -33,14 +36,6 @@ class Advert < ActiveRecord::Base
       query { string params[:query] } if params[:query].present?
     end
     adverts.select { |a| a.state_is? :published }
-  end
-
-  def self.get_nonpublished_for_page page
-    get_nonpublished.order(:updated_at).page(page).per(5)
-  end
-
-  def self.get_nonpublished
-    where(state: :new).order(:updated_at)
   end
 
   #For cron

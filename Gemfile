@@ -53,7 +53,7 @@ gem 'devise'
 
 gem 'whenever'
 
-gem 'cancan'
+gem 'cancancan'
 
 gem 'paperclip'
 
