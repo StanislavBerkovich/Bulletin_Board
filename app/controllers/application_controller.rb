@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :set_i18n_locale_from_params
 
   rescue_from CanCan::AccessDenied do |exception|
-    flash[:alert] = "Access denied."
+    flash[:alert] = I18n.t "views.access_denied."
     redirect_to root_url
   end
 

@@ -73,6 +73,7 @@ ru:
     other: "Пользователи"
 
   views:
+    access_denied: "Доступ запрещен"
     create: "Cоздать"
     because: "т.к."
     back: "Назад"

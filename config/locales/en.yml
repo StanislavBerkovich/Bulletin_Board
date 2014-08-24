@@ -76,6 +76,7 @@ en:
 
 
   views:
+    access_denied: "Access denied"
     create: "Create"
     because: "because"
     back: "Back"

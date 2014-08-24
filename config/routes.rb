@@ -15,7 +15,7 @@ Rails.application.routes.draw do
       member do
         post 'approve'
         get 'reject_reason'
-        put 'rejected'
+        put 'reject'
       end
     end
 

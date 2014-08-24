@@ -1,6 +1,8 @@
 class PersonsController < ApplicationController
-
+  authorize_resource :class => false
+  before_filter :authenticate_user!
   before_action :set_person, only: [:edit, :profile, :save_changes, :delete]
+  before_filter :user_ability
 
   def profile
     @adverts_count = Advert.count_of @person
@@ -12,7 +14,7 @@ class PersonsController < ApplicationController
 
   def save_changes
     if @person.update person_params
-      redirect_to profile_path(id: @person), notice: "User was successfully updated"
+      redirect_to root_path, notice: "User was successfully updated"
     else
       redirect_to :back, alert: get_errors(@person)
     end
@@ -51,6 +53,14 @@ class PersonsController < ApplicationController
     end
     p[:role] = Role.find_by(name: params[:user][:role]) if params[:user].has_key? :role
     p
+  end
+
+  def user_ability
+    if current_user.is?(:user) &&  @person != current_user
+      5.times{puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"}
+      5.times{puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"}
+      raise CanCan::AccessDenied
+    end
   end
 
 end

@@ -1,7 +1,7 @@
 <div>
 
     <h3>Please, enter reject reason:</h3>
-  <%= simple_form_for(@advert, url: rejected_advert_path(id: @advert), html: {method: :put}) do |f| %>
+  <%= simple_form_for(@advert, url: reject_advert_path(id: @advert), html: {method: :put}) do |f| %>
 
         <div>
           <%= f.input :reject_reason, value: 'because...' %>

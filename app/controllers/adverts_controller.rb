@@ -1,7 +1,8 @@
 class AdvertsController < ApplicationController
-
-  before_filter :authenticate_user!, except: [:show, :index, :personal_locale]
-  before_action :set_advert, only: [:show, :edit, :update, :destroy, :approve, :rejected, :reject_reason]
+  load_and_authorize_resource
+  skip_load_resource :only => [:create]
+  before_filter :authenticate_user!, except: [:show, :index, :personal_locale, :search]
+  before_action :set_advert, only: [:show, :edit, :update, :destroy, :approve, :reject, :reject_reason]
 
   # GET /adverts
   # GET /adverts.json
@@ -96,7 +97,7 @@ class AdvertsController < ApplicationController
     end
   end
 
-  def rejected
+  def reject
     @advert.update_attribute(:reject_reason, Unicode::downcase(params['advert'][:reject_reason]))
     change_state :rejected
   end

@@ -18,7 +18,7 @@
 </p>
 
 <% unless @advert.pictures.empty? %>
-    <label><%= t('advert.fields.pictures') %>:</label>
+    <p><strong><%= t('advert.fields.pictures') %>:</strong></p>
 
     <div>
       <% @advert.pictures.each do |p| %>

@@ -1,6 +1,7 @@
 class TypesController < ApplicationController
   # GET /types
-
+  load_and_authorize_resource
+  skip_load_resource :only => [:create]
   before_filter :authenticate_user!
 
   def index
