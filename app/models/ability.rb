@@ -43,6 +43,7 @@ class Ability
   end
 
   def admin_ability user
+    user_ability user
     can :read, :all
     can [:approve, :reject, :reject_reason], Advert do |advert|
       advert.try(:state_is?, :new)
@@ -56,7 +57,8 @@ class Ability
     can :destroy, Type do |t|
       t.adverts.empty?
     end
+
     cannot [:edit, :create], Advert
-    user_ability user
+
   end
 end
